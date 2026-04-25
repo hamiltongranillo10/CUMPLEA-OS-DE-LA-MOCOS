@@ -7,7 +7,6 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-
 body{
     font-family:'Segoe UI',sans-serif;
     color:white;
@@ -15,240 +14,131 @@ body{
     text-align:center;
 }
 
-/* 🌊 FONDO MAR ANIMADO */
+/* 🌊 FONDO MAR */
 body::before{
     content:"";
     position:fixed;
     width:200%;height:200%;
-    background: radial-gradient(circle at 50% 50%, #2a5298, #1e3c72, #0f2027);
-    animation:wave 10s linear infinite;
-    z-index:-2;
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    width:200%;height:200%;
-    background:url("https://svgshare.com/i/13uA.svg");
-    opacity:0.2;
-    animation:wave2 20s linear infinite;
+    background: linear-gradient(180deg,#1e3c72,#2a5298,#87CEEB);
+    animation:wave 12s linear infinite;
     z-index:-1;
 }
+@keyframes wave{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-@keyframes wave{
-    from{transform:translateX(0);} to{transform:translateX(-50%);} }
-@keyframes wave2{
-    from{transform:translateX(0);} to{transform:translateX(-30%);} }
-
-.section{
-    display:none;
-    height:100vh;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    padding:20px;
-}
+.section{display:none;height:100vh;justify-content:center;align-items:center;flex-direction:column;padding:20px;}
 .active{display:flex;}
 
-.btn{
-    margin-top:15px;
-    padding:12px 25px;
-    border:none;
-    border-radius:30px;
-    background:linear-gradient(45deg,#ff416c,#ff4b2b);
-    color:white;
-    cursor:pointer;
-}
+.btn{margin-top:15px;padding:12px 25px;border:none;border-radius:30px;background:#ff4d6d;color:white;cursor:pointer;}
 
 /* PUZZLE */
 #puzzle{
     display:grid;
-    grid-template-columns:repeat(3,80px);
+    grid-template-columns:repeat(3,90px);
     gap:5px;
 }
 .piece{
-    width:80px;height:80px;
-    background-size:240px 240px;
-    cursor:grab;
-}
-
-.slot{
-    width:80px;height:80px;
-    border:2px dashed #fff5;
+    width:90px;height:90px;
+    background-image:url(FOTO_DE_ELLA.jpg);
+    background-size:270px 270px;
+    cursor:pointer;
 }
 
 /* EMOJIS */
-.emoji{
-    position:absolute;
-    font-size:24px;
-    animation:float 3s linear forwards;
-}
+.emoji{position:absolute;font-size:24px;animation:float 3s linear forwards;}
 @keyframes float{to{transform:translateY(-120vh);opacity:0}}
 
 </style>
 </head>
-
 <body>
+
+<!-- 🎵 MUSICA -->
+<audio id="music" loop>
+<source src="MUSICA.mp3" type="audio/mp3">
+</audio>
 
 <!-- INTRO -->
 <div class="section active" id="s1">
 <h1>🌊 Bienvenida</h1>
-<p>Hoy entras a un juego real 😏</p>
-<button class="btn" onclick="go(2)">Empezar</button>
+<p>Esto es un juego real 😏</p>
+<button class="btn" onclick="startGame()">Empezar</button>
 </div>
 
-<!-- NIVEL 1 REFLEJOS -->
+<!-- PUZZLE -->
 <div class="section" id="s2">
-<h1>🎯 Reflejos</h1>
-<p>Toca cuando aparezca</p>
-<button id="target" class="btn" style="display:none" onclick="hit()">¡YA!</button>
-<p id="msg"></p>
-</div>
-
-<!-- NIVEL 2 MEMORIA -->
-<div class="section" id="s3">
-<h1>🧠 Memoria</h1>
-<div id="grid"></div>
-<p id="pairs">0</p>
-</div>
-
-<!-- NIVEL 3 PUZZLE -->
-<div class="section" id="s4">
 <h1>🧩 Rompecabezas</h1>
-<p>Arma la imagen 😏</p>
+<p>Ordena la imagen</p>
 <div id="puzzle"></div>
 <p id="done"></p>
 </div>
 
-<!-- NIVEL 4 SUERTE -->
-<div class="section" id="s5">
-<h1>🎰 Suerte</h1>
-<button class="btn" onclick="luck()">Intentar</button>
-<p id="luck"></p>
-</div>
-
 <!-- FINAL -->
-<div class="section" id="s6">
+<div class="section" id="s3">
 <h1>💖</h1>
-<p>Ganaste todo...
-<br><br>pero yo te gané a ti 😏
+<p>Lo lograste...
 <br><br>Feliz cumpleaños 🎂</p>
 <button class="btn" onclick="location.reload()">Repetir</button>
-<!-- SECCION AMIGAS + VIDEO -->
-<div class="section" id="sExtra">
-<h1>😏 Tus cómplices</h1>
-
-<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
-<img src="FOTO_AMIGA1.jpg" style="width:80px;height:80px;border-radius:50%;object-fit:cover;">
-<img src="FOTO_AMIGA2.jpg" style="width:80px;height:80px;border-radius:50%;object-fit:cover;">
-<img src="FOTO_AMIGA3.jpg" style="width:80px;height:80px;border-radius:50%;object-fit:cover;">
-</div>
-
-<h2 style="margin-top:20px;">📹 Evidencia</h2>
-<video controls width="260">
-<source src="VIDEO_FIDEOS.mp4" type="video/mp4">
-</video>
-
-<button class="btn" onclick="go(6)">Seguir 😏</button>
 </div>
 
 <script>
+function startGame(){
+ document.getElementById('music').play();
+ go(2);
+}
+
 function go(n){
  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
  document.getElementById('s'+n).classList.add('active');
 }
 
-/* REFLEJOS */
-setTimeout(()=>{
- document.getElementById('target').style.display='block';
-},2000);
-function hit(){
- document.getElementById('msg').innerText='🔥 rápido';
- spawn('🎯');
- setTimeout(()=>go(3),1000);
-}
+/* PUZZLE CORREGIDO */
+let positions=[0,1,2,3,4,5,6,7,8];
+let shuffled=[...positions].sort(()=>Math.random()-0.5);
+let selected=null;
 
-/* MEMORIA SIMPLE */
-let emojis=['😏','😏','🔥','🔥'];
-emojis.sort(()=>Math.random()-0.5);
-let first=null, pairs=0;
+shuffled.forEach((pos,index)=>{
+ let div=document.createElement('div');
+ div.className='piece';
+ div.dataset.correct=pos;
+ div.dataset.current=index;
 
-emojis.forEach(e=>{
- let d=document.createElement('button');
- d.className='btn';
- d.onclick=()=>flip(d,e);
- d.dataset.val=e;
- document.getElementById('grid').appendChild(d);
+ let x=pos%3;
+ let y=Math.floor(pos/3);
+ div.style.backgroundPosition=`${x*-90}px ${y*-90}px`;
+
+ div.onclick=()=>selectPiece(div);
+ document.getElementById('puzzle').appendChild(div);
 });
 
-function flip(el,val){
- if(el.innerText) return;
- el.innerText=val;
-
- if(!first){first=el;return;}
-
- if(first.dataset.val===el.dataset.val){
- pairs++;
- document.getElementById('pairs').innerText=pairs;
- first=null;
- if(pairs>=2){setTimeout(()=>go(4),1000)}
- }else{
- setTimeout(()=>{
- first.innerText='';
- el.innerText='';
- first=null;
- },500);
+function selectPiece(el){
+ if(!selected){
+ selected=el;
+ el.style.outline='3px solid yellow';
+ return;
  }
-}
 
-/* PUZZLE DRAG */
-let order=[0,1,2,3,4,5,6,7,8];
-order.sort(()=>Math.random()-0.5);
+ // intercambiar
+ let tempBg=selected.style.backgroundPosition;
+ selected.style.backgroundPosition=el.style.backgroundPosition;
+ el.style.backgroundPosition=tempBg;
 
-order.forEach(i=>{
- let p=document.createElement('div');
- p.className='piece';
- p.draggable=true;
- p.dataset.index=i;
- p.style.backgroundImage='url(FOTO_DE_ELLA.jpg)';
- p.style.backgroundPosition=`${(i%3)*-80}px ${Math.floor(i/3)*-80}px`;
- p.ondragstart=e=>e.dataTransfer.setData('i',i);
- p.ondrop=drop;
- p.ondragover=e=>e.preventDefault();
- document.getElementById('puzzle').appendChild(p);
-});
-
-function drop(e){
- let from=e.dataTransfer.getData('i');
- let to=e.target.dataset.index;
-
- let pieces=document.querySelectorAll('.piece');
- let temp=pieces[from].style.backgroundPosition;
- pieces[from].style.backgroundPosition=pieces[to].style.backgroundPosition;
- pieces[to].style.backgroundPosition=temp;
-
+ selected.style.outline='none';
+ selected=null;
  checkPuzzle();
 }
 
 function checkPuzzle(){
  let correct=0;
  document.querySelectorAll('.piece').forEach((p,i)=>{
- if(p.style.backgroundPosition===`${(i%3)*-80}px ${Math.floor(i/3)*-80}px`){correct++;}
+ let x=i%3;
+ let y=Math.floor(i/3);
+ let expected=`${x*-90}px ${y*-90}px`;
+ if(p.style.backgroundPosition===expected){correct++;}
  });
- if(correct===9){
- document.getElementById('done').innerText='Listo 😏';
- setTimeout(()=>go(5),1000);
- }
-}
 
-/* SUERTE */
-function luck(){
- if(Math.random()>0.6){
- document.getElementById('luck').innerText='GANASTE 🎉';
+ if(correct===9){
+ document.getElementById('done').innerText='Perfecto 😏';
  spawn('🎉');
- setTimeout(()=>go(6),1000);
- }else{
- document.getElementById('luck').innerText='Otra vez 😂';
+ setTimeout(()=>go(3),1200);
  }
 }
 
