@@ -3,246 +3,203 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para ti ❤️</title>
+<title>Experiencia Premium 🎂</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-    font-family: Arial, sans-serif;
-    background: linear-gradient(180deg,#1e3c72,#2a5298,#87CEEB);
+    font-family:'Segoe UI',sans-serif;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
     color:white;
-    text-align:center;
-    overflow-x:hidden;
+    overflow:hidden;
 }
 
-/* BOTÓN MÚSICA */
-#controlMusica{
-    position:fixed;
-    top:10px;
-    right:10px;
-    z-index:999;
-    background:#0008;
-    border:none;
-    font-size:20px;
-    padding:10px;
-    border-radius:50%;
-    color:white;
-}
-
-/* PANTALLAS */
-.pantalla{
+.section{
     display:none;
-    min-height:100vh;
+    height:100vh;
     justify-content:center;
     align-items:center;
     flex-direction:column;
+    text-align:center;
     padding:20px;
 }
 
-.activa{display:flex;}
+.active{display:flex;animation:fade 0.6s ease;}
 
-h1,h2{text-shadow:2px 2px black;}
-
-.edad{
-    font-size:5rem;
-    color:gold;
-    animation:brillo 2s infinite;
+@keyframes fade{
+    from{opacity:0;transform:scale(0.95);} 
+    to{opacity:1;transform:scale(1);} 
 }
 
-@keyframes brillo{
-    0%,100%{text-shadow:0 0 10px gold;}
-    50%{text-shadow:0 0 30px gold;}
+h1{font-size:2.2rem;margin-bottom:10px;}
+
+.big{
+    font-size:6rem;
+    font-weight:bold;
+    background:linear-gradient(45deg,gold,orange);
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:glow 2s infinite;
+}
+
+@keyframes glow{
+    0%,100%{text-shadow:0 0 10px gold;} 
+    50%{text-shadow:0 0 30px orange;} 
 }
 
 .btn{
-    background:#ff6b6b;
-    padding:15px 25px;
-    border-radius:40px;
+    margin-top:25px;
+    padding:15px 30px;
     border:none;
+    border-radius:50px;
+    background:linear-gradient(45deg,#ff416c,#ff4b2b);
     color:white;
     font-weight:bold;
-    margin-top:20px;
     cursor:pointer;
+    transition:0.2s;
 }
 
-/* IMAGEN */
-.foto{
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    border:5px solid white;
-    object-fit:cover;
-    margin:20px 0;
-}
+.btn:hover{transform:scale(1.05);} 
 
-/* CORAZONES */
-.corazon{
+/* EFECTOS */
+.emoji{
     position:absolute;
-    animation:flotar 3s forwards;
-}
-
-@keyframes flotar{
-    0%{opacity:1;transform:translateY(0);}
-    100%{opacity:0;transform:translateY(-200px);}
-}
-
-/* CONFETI */
-.confeti{
-    position:fixed;
-    width:10px;
-    height:10px;
-    top:0;
-}
-
-/* GLOBOS */
-.globo{
-    position:absolute;
-    bottom:-50px;
     font-size:25px;
-    animation:subir 6s linear;
+    animation:float 3s linear forwards;
 }
 
-@keyframes subir{
-    to{transform:translateY(-120vh);}
+@keyframes float{
+    to{transform:translateY(-120vh) rotate(720deg);opacity:0;} 
 }
 
-/* HUMO */
-.humo{
-    position:absolute;
-    top:0;
-    left:50%;
-    transform:translateX(-50%);
-    animation:humo 2s forwards;
+/* DADO */
+#dice{
+    font-size:4rem;
+    margin:20px;
 }
 
-@keyframes humo{
-    to{opacity:0;transform:translateY(-80px);}
-}
 </style>
 </head>
 
 <body>
 
-<button id="controlMusica" onclick="toggleMusica()">🔊</button>
-
-<!-- PANTALLA 1 -->
-<div class="pantalla activa" id="p1">
-<h1>Hey Mocosa 😏</h1>
-<p>Tus</p>
-<div class="edad">19</div>
-
-<img class="foto" src="https://i.imgur.com/yourimage.jpg">
-
-<button class="btn" onclick="next(2)">Entrar 👀</button>
+<!-- 1 INTRO -->
+<div class="section active" id="s1">
+<h1>Prepárate 😏</h1>
+<p>Esto no es una página cualquiera...</p>
+<div class="big">19</div>
+<button class="btn" onclick="go(2)">Entrar</button>
 </div>
 
-<!-- PANTALLA 2 -->
-<div class="pantalla" id="p2">
-<h2>¿Te acuerdas de nosotros? 😏</h2>
-
-<button class="btn" onclick="next(3)">Siguiente</button>
+<!-- 2 STORY -->
+<div class="section" id="s2">
+<h1>Pregunta seria...</h1>
+<p>¿Cómo alguien puede ser tan problemática y linda al mismo tiempo? 😂</p>
+<button class="btn" onclick="go(3)">Responder después</button>
 </div>
 
-<!-- PANTALLA 3 -->
-<div class="pantalla" id="p3">
-<h2>La barca 🏴‍☠️</h2>
-<p>Tócala varias veces</p>
-
-<button class="btn" onclick="corazones()">❤️</button>
-<p id="contador">0</p>
-
-<button class="btn" id="btnNext" style="display:none;" onclick="next(4)">Continuar</button>
+<!-- 3 GAME CLICK -->
+<div class="section" id="s3">
+<h1>Mini reto 💥</h1>
+<p>Toca el botón 7 veces</p>
+<button class="btn" onclick="clickGame()">🔥</button>
+<p id="count">0</p>
+<button class="btn" id="next3" style="display:none" onclick="go(4)">Siguiente</button>
 </div>
 
-<!-- PANTALLA 4 -->
-<div class="pantalla" id="p4">
-<h1>🎂 Feliz Cumpleaños</h1>
+<!-- 4 DICE GAME -->
+<div class="section" id="s4">
+<h1>Juego oficial 🎲</h1>
+<div id="dice">🎲</div>
+<button class="btn" onclick="roll()">Lanzar dado</button>
+<p id="result"></p>
+<button class="btn" id="next4" style="display:none" onclick="go(5)">Continuar</button>
+</div>
 
-<img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" width="150" onclick="soplar()">
-
-<p id="soplos">0/3</p>
-
-<button class="btn" id="finalBtn" style="display:none;" onclick="next(5)">Final</button>
+<!-- 5 CAKE -->
+<div class="section" id="s5">
+<h1>Momento importante 🎂</h1>
+<p>Toca 3 veces para pedir tu deseo</p>
+<button class="btn" onclick="cake()">🎂</button>
+<p id="cakeCount">0/3</p>
+<button class="btn" id="next5" style="display:none" onclick="go(6)">Final</button>
 </div>
 
 <!-- FINAL -->
-<div class="pantalla" id="p5">
+<div class="section" id="s6">
 <h1>💖</h1>
-<p>
-Eres muy importante para mí.<br><br>
-Gracias por existir.<br>
-Y feliz cumpleaños 😏
+<p style="max-width:400px">
+Ok ya fuera de bromas...
+<br><br>
+Eres demasiado importante para mí.
+<br><br>
+Y aunque molestes bastante 😏
+<br>
+no cambiaría nada de ti.
+<br><br>
+Feliz cumpleaños 🎂
 </p>
-
 <button class="btn" onclick="location.reload()">Repetir</button>
 </div>
 
-<audio id="musica" loop src="https://www.soundjay.com/misc/sounds/carnival-1.mp3"></audio>
-
 <script>
-let count=0;
-let soplo=0;
+let c=0;
+let cakeC=0;
 
-function next(n){
-document.querySelectorAll('.pantalla').forEach(p=>p.classList.remove('activa'));
-document.getElementById('p'+n).classList.add('activa');
+function go(n){
+ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+ document.getElementById('s'+n).classList.add('active');
 }
 
-function corazones(){
-count++;
-document.getElementById('contador').innerText=count;
+function clickGame(){
+ c++;
+ document.getElementById('count').innerText=c;
+ spawn('🔥');
 
-let c=document.createElement('div');
-c.className='corazon';
-c.innerText='❤️';
-c.style.left=Math.random()*100+'%';
-document.body.appendChild(c);
-
-setTimeout(()=>c.remove(),3000);
-
-if(count>=5){
-document.getElementById('btnNext').style.display='block';
-}
+ if(c>=7){
+ document.getElementById('next3').style.display='block';
+ }
 }
 
-function soplar(){
-soplo++;
-document.getElementById('soplos').innerText=soplo+'/3';
+function roll(){
+ let dice=document.getElementById('dice');
+ let r=Math.floor(Math.random()*6)+1;
+ dice.innerText=r;
 
-let h=document.createElement('div');
-h.className='humo';
-h.innerText='💨';
-document.body.appendChild(h);
-
-setTimeout(()=>h.remove(),2000);
-
-if(soplo>=3){
-document.getElementById('finalBtn').style.display='block';
-confeti();
+ if(r===6){
+ document.getElementById('result').innerText='Ganaste 😏';
+ spawn('🎉');
+ document.getElementById('next4').style.display='block';
+ }else{
+ document.getElementById('result').innerText='Sigue intentando 😂';
+ }
 }
+
+function cake(){
+ cakeC++;
+ document.getElementById('cakeCount').innerText=cakeC+'/3';
+ spawn('🎂');
+
+ if(cakeC>=3){
+ document.getElementById('next5').style.display='block';
+ confeti();
+ }
+}
+
+function spawn(e){
+ let el=document.createElement('div');
+ el.className='emoji';
+ el.innerText=e;
+ el.style.left=Math.random()*100+'%';
+ document.body.appendChild(el);
+ setTimeout(()=>el.remove(),3000);
 }
 
 function confeti(){
-for(let i=0;i<50;i++){
-let c=document.createElement('div');
-c.className='confeti';
-c.style.left=Math.random()*100+'%';
-c.style.background=`hsl(${Math.random()*360},100%,50%)`;
-document.body.appendChild(c);
-
-c.animate([
-{transform:'translateY(0)'},
-{transform:'translateY(100vh)'}
-],{duration:3000});
-
-setTimeout(()=>c.remove(),3000);
-}
-}
-
-function toggleMusica(){
-let m=document.getElementById('musica');
-if(m.paused){m.play();}else{m.pause();}
+ for(let i=0;i<80;i++){
+ spawn(['🎉','✨','💖','🔥'][Math.floor(Math.random()*4)]);
+ }
 }
 </script>
 
