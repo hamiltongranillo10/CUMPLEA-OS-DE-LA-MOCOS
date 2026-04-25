@@ -3,20 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para ti ❤️</title>
+<title>Página especial ❤️</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-
 body{
+    margin:0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(180deg,#0f2027,#203a43,#2c5364);
+    background: linear-gradient(180deg,#1e3c72,#2a5298);
     color:white;
     text-align:center;
 }
 
-/* PANTALLAS */
-.pantalla{
+/* SECCIONES */
+.section{
     display:none;
     min-height:100vh;
     justify-content:center;
@@ -25,177 +24,107 @@ body{
     padding:20px;
 }
 
-.activa{display:flex;}
+.active{display:flex;}
 
-h1{font-size:2rem;margin-bottom:10px;}
-h2{margin-bottom:20px;}
-
+h1{font-size:2rem;}
 .edad{
     font-size:5rem;
     color:gold;
-    animation:brillo 2s infinite;
 }
 
-@keyframes brillo{
-    0%,100%{text-shadow:0 0 10px gold;}
-    50%{text-shadow:0 0 30px gold;}
-}
-
-/* BOTONES */
-.btn{
-    background:#ff4d6d;
-    border:none;
-    padding:15px 25px;
-    border-radius:50px;
-    color:white;
-    font-weight:bold;
+/* BOTÓN */
+button{
     margin-top:20px;
+    padding:15px 25px;
+    border:none;
+    border-radius:40px;
+    background:#ff4d6d;
+    color:white;
+    font-size:1rem;
     cursor:pointer;
 }
-
-/* FOTO */
-.foto{
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    border:4px solid white;
-    object-fit:cover;
-    margin:20px 0;
-}
-
-/* EFECTOS */
-.corazon{
-    position:absolute;
-    animation:flotar 3s forwards;
-}
-
-@keyframes flotar{
-    0%{opacity:1;transform:translateY(0);}
-    100%{opacity:0;transform:translateY(-200px);}
-}
-
-.confeti{
-    position:fixed;
-    width:8px;
-    height:8px;
-    top:0;
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- PANTALLA 1 -->
-<div class="pantalla activa" id="p1">
+<!-- INICIO -->
+<div class="section active" id="s1">
 <h1>Hey 😏</h1>
 <p>Esto es para tus</p>
 <div class="edad">19</div>
 
-<img class="foto" src="https://i.imgur.com/8Km9tLL.jpg">
-
-<button class="btn" onclick="next(2)">Entrar 👀</button>
+<button onclick="next(2)">Entrar</button>
 </div>
 
-<!-- PANTALLA 2 -->
-<div class="pantalla" id="p2">
-<h2>Te acuerdas cuando te vi por primera vez? 🏴‍☠️</h2>
-<p style="max-width:300px;">
-Ese momento donde pensé:<br>
-"¿Quién es ella?"
-</p>
+<!-- HISTORIA -->
+<div class="section" id="s2">
+<h1>Te acuerdas de nosotros?</h1>
+<p>Todo empezó con algo simple...</p>
 
-<button class="btn" onclick="next(3)">Siguiente</button>
+<button onclick="next(3)">Seguir</button>
 </div>
 
-<!-- PANTALLA 3 -->
-<div class="pantalla" id="p3">
-<h2>Ok... ahora prueba esto 👇</h2>
-<p>Toca varias veces</p>
+<!-- INTERACCIÓN -->
+<div class="section" id="s3">
+<h1>Haz esto 👇</h1>
+<p>Toca el botón 5 veces</p>
 
-<button class="btn" onclick="love()">❤️</button>
+<button onclick="contar()">❤️</button>
 <p id="contador">0</p>
 
-<button class="btn" id="next3" style="display:none;" onclick="next(4)">Continuar</button>
+<button id="btnNext" style="display:none;" onclick="next(4)">Continuar</button>
 </div>
 
-<!-- PANTALLA 4 -->
-<div class="pantalla" id="p4">
+<!-- CUMPLE -->
+<div class="section" id="s4">
 <h1>🎂 Feliz Cumpleaños</h1>
-
 <p>Toca 3 veces para pedir tu deseo</p>
 
-<button class="btn" onclick="cake()">🎂</button>
+<button onclick="soplar()">🎂</button>
 <p id="soplos">0/3</p>
 
-<button class="btn" id="finalBtn" style="display:none;" onclick="next(5)">Final</button>
+<button id="btnFinal" style="display:none;" onclick="next(5)">Final</button>
 </div>
 
 <!-- FINAL -->
-<div class="pantalla" id="p5">
+<div class="section" id="s5">
 <h1>💖</h1>
-<p style="max-width:300px;">
+<p>
 Eres muy importante para mí.<br><br>
-Gracias por existir.<br>
-Y feliz cumpleaños 😏
+Feliz cumpleaños 😏
 </p>
 
-<button class="btn" onclick="location.reload()">Repetir</button>
+<button onclick="location.reload()">Reiniciar</button>
 </div>
 
 <script>
-let count=0;
-let soplo=0;
+let count = 0;
+let soplos = 0;
 
+/* CAMBIAR SECCIÓN */
 function next(n){
-document.querySelectorAll('.pantalla').forEach(p=>p.classList.remove('activa'));
-document.getElementById('p'+n).classList.add('activa');
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+document.getElementById('s'+n).classList.add('active');
 }
 
-/* CORAZONES */
-function love(){
+/* CONTADOR */
+function contar(){
 count++;
-document.getElementById('contador').innerText=count;
+document.getElementById('contador').innerText = count;
 
-let c=document.createElement('div');
-c.className='corazon';
-c.innerText='❤️';
-c.style.left=Math.random()*100+'%';
-document.body.appendChild(c);
-
-setTimeout(()=>c.remove(),3000);
-
-if(count>=5){
-document.getElementById('next3').style.display='block';
+if(count >= 5){
+document.getElementById('btnNext').style.display = 'block';
 }
 }
 
-/* TORTA */
-function cake(){
-soplo++;
-document.getElementById('soplos').innerText=soplo+'/3';
+/* SOPLAR */
+function soplar(){
+soplos++;
+document.getElementById('soplos').innerText = soplos + "/3";
 
-if(soplo>=3){
-document.getElementById('finalBtn').style.display='block';
-confeti();
-}
-}
-
-/* CONFETI */
-function confeti(){
-for(let i=0;i<60;i++){
-let c=document.createElement('div');
-c.className='confeti';
-c.style.left=Math.random()*100+'%';
-c.style.background=`hsl(${Math.random()*360},100%,50%)`;
-document.body.appendChild(c);
-
-c.animate([
-{transform:'translateY(0)'},
-{transform:'translateY(100vh)'}
-],{duration:3000});
-
-setTimeout(()=>c.remove(),3000);
+if(soplos >= 3){
+document.getElementById('btnFinal').style.display = 'block';
 }
 }
 </script>
