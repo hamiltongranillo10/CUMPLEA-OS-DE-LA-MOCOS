@@ -10,24 +10,9 @@
 
 body{
     font-family: Arial, sans-serif;
-    background: linear-gradient(180deg,#1e3c72,#2a5298,#87CEEB);
+    background: linear-gradient(180deg,#0f2027,#203a43,#2c5364);
     color:white;
     text-align:center;
-    overflow-x:hidden;
-}
-
-/* BOTÓN MÚSICA */
-#controlMusica{
-    position:fixed;
-    top:10px;
-    right:10px;
-    z-index:999;
-    background:#0008;
-    border:none;
-    font-size:20px;
-    padding:10px;
-    border-radius:50%;
-    color:white;
 }
 
 /* PANTALLAS */
@@ -42,7 +27,8 @@ body{
 
 .activa{display:flex;}
 
-h1,h2{text-shadow:2px 2px black;}
+h1{font-size:2rem;margin-bottom:10px;}
+h2{margin-bottom:20px;}
 
 .edad{
     font-size:5rem;
@@ -55,28 +41,29 @@ h1,h2{text-shadow:2px 2px black;}
     50%{text-shadow:0 0 30px gold;}
 }
 
+/* BOTONES */
 .btn{
-    background:#ff6b6b;
-    padding:15px 25px;
-    border-radius:40px;
+    background:#ff4d6d;
     border:none;
+    padding:15px 25px;
+    border-radius:50px;
     color:white;
     font-weight:bold;
     margin-top:20px;
     cursor:pointer;
 }
 
-/* IMAGEN */
+/* FOTO */
 .foto{
     width:180px;
     height:180px;
     border-radius:50%;
-    border:5px solid white;
+    border:4px solid white;
     object-fit:cover;
     margin:20px 0;
 }
 
-/* CORAZONES */
+/* EFECTOS */
 .corazon{
     position:absolute;
     animation:flotar 3s forwards;
@@ -87,80 +74,58 @@ h1,h2{text-shadow:2px 2px black;}
     100%{opacity:0;transform:translateY(-200px);}
 }
 
-/* CONFETI */
 .confeti{
     position:fixed;
-    width:10px;
-    height:10px;
+    width:8px;
+    height:8px;
     top:0;
 }
 
-/* GLOBOS */
-.globo{
-    position:absolute;
-    bottom:-50px;
-    font-size:25px;
-    animation:subir 6s linear;
-}
-
-@keyframes subir{
-    to{transform:translateY(-120vh);}
-}
-
-/* HUMO */
-.humo{
-    position:absolute;
-    top:0;
-    left:50%;
-    transform:translateX(-50%);
-    animation:humo 2s forwards;
-}
-
-@keyframes humo{
-    to{opacity:0;transform:translateY(-80px);}
-}
 </style>
 </head>
 
 <body>
 
-<button id="controlMusica" onclick="toggleMusica()">🔊</button>
-
 <!-- PANTALLA 1 -->
 <div class="pantalla activa" id="p1">
-<h1>Hey Mocosa 😏</h1>
-<p>Tus</p>
+<h1>Hey 😏</h1>
+<p>Esto es para tus</p>
 <div class="edad">19</div>
 
-<img class="foto" src="https://i.imgur.com/yourimage.jpg">
+<img class="foto" src="https://i.imgur.com/8Km9tLL.jpg">
 
 <button class="btn" onclick="next(2)">Entrar 👀</button>
 </div>
 
 <!-- PANTALLA 2 -->
 <div class="pantalla" id="p2">
-<h2>¿Te acuerdas de nosotros? 😏</h2>
+<h2>Te acuerdas cuando te vi por primera vez? 🏴‍☠️</h2>
+<p style="max-width:300px;">
+Ese momento donde pensé:<br>
+"¿Quién es ella?"
+</p>
 
 <button class="btn" onclick="next(3)">Siguiente</button>
 </div>
 
 <!-- PANTALLA 3 -->
 <div class="pantalla" id="p3">
-<h2>La barca 🏴‍☠️</h2>
-<p>Tócala varias veces</p>
+<h2>Ok... ahora prueba esto 👇</h2>
+<p>Toca varias veces</p>
 
-<button class="btn" onclick="corazones()">❤️</button>
+<button class="btn" onclick="love()">❤️</button>
 <p id="contador">0</p>
 
-<button class="btn" id="btnNext" style="display:none;" onclick="next(4)">Continuar</button>
+<button class="btn" id="next3" style="display:none;" onclick="next(4)">Continuar</button>
 </div>
 
 <!-- PANTALLA 4 -->
 <div class="pantalla" id="p4">
 <h1>🎂 Feliz Cumpleaños</h1>
 
-<img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" width="150" onclick="soplar()">
+<p>Toca 3 veces para pedir tu deseo</p>
 
+<button class="btn" onclick="cake()">🎂</button>
 <p id="soplos">0/3</p>
 
 <button class="btn" id="finalBtn" style="display:none;" onclick="next(5)">Final</button>
@@ -169,7 +134,7 @@ h1,h2{text-shadow:2px 2px black;}
 <!-- FINAL -->
 <div class="pantalla" id="p5">
 <h1>💖</h1>
-<p>
+<p style="max-width:300px;">
 Eres muy importante para mí.<br><br>
 Gracias por existir.<br>
 Y feliz cumpleaños 😏
@@ -177,8 +142,6 @@ Y feliz cumpleaños 😏
 
 <button class="btn" onclick="location.reload()">Repetir</button>
 </div>
-
-<audio id="musica" loop src="https://www.soundjay.com/misc/sounds/carnival-1.mp3"></audio>
 
 <script>
 let count=0;
@@ -189,7 +152,8 @@ document.querySelectorAll('.pantalla').forEach(p=>p.classList.remove('activa'));
 document.getElementById('p'+n).classList.add('activa');
 }
 
-function corazones(){
+/* CORAZONES */
+function love(){
 count++;
 document.getElementById('contador').innerText=count;
 
@@ -202,20 +166,14 @@ document.body.appendChild(c);
 setTimeout(()=>c.remove(),3000);
 
 if(count>=5){
-document.getElementById('btnNext').style.display='block';
+document.getElementById('next3').style.display='block';
 }
 }
 
-function soplar(){
+/* TORTA */
+function cake(){
 soplo++;
 document.getElementById('soplos').innerText=soplo+'/3';
-
-let h=document.createElement('div');
-h.className='humo';
-h.innerText='💨';
-document.body.appendChild(h);
-
-setTimeout(()=>h.remove(),2000);
 
 if(soplo>=3){
 document.getElementById('finalBtn').style.display='block';
@@ -223,8 +181,9 @@ confeti();
 }
 }
 
+/* CONFETI */
 function confeti(){
-for(let i=0;i<50;i++){
+for(let i=0;i<60;i++){
 let c=document.createElement('div');
 c.className='confeti';
 c.style.left=Math.random()*100+'%';
@@ -238,11 +197,6 @@ c.animate([
 
 setTimeout(()=>c.remove(),3000);
 }
-}
-
-function toggleMusica(){
-let m=document.getElementById('musica');
-if(m.paused){m.play();}else{m.pause();}
 }
 </script>
 
