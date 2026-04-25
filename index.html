@@ -3,18 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Experiencia Premium 🎂</title>
+<title>Parque de Diversiones 🎡</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-
 body{
     font-family:'Segoe UI',sans-serif;
-    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    background: radial-gradient(circle at top,#1a2a6c,#16222a);
     color:white;
     overflow:hidden;
 }
-
 .section{
     display:none;
     height:100vh;
@@ -24,166 +22,181 @@ body{
     text-align:center;
     padding:20px;
 }
+.active{display:flex;animation:fade .6s ease;}
+@keyframes fade{from{opacity:0}to{opacity:1}}
 
-.active{display:flex;animation:fade 0.6s ease;}
-
-@keyframes fade{
-    from{opacity:0;transform:scale(0.95);} 
-    to{opacity:1;transform:scale(1);} 
-}
-
-h1{font-size:2.2rem;margin-bottom:10px;}
-
-.big{
-    font-size:6rem;
-    font-weight:bold;
-    background:linear-gradient(45deg,gold,orange);
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:glow 2s infinite;
-}
-
-@keyframes glow{
-    0%,100%{text-shadow:0 0 10px gold;} 
-    50%{text-shadow:0 0 30px orange;} 
-}
+h1{margin-bottom:10px;}
 
 .btn{
-    margin-top:25px;
-    padding:15px 30px;
+    margin-top:20px;
+    padding:12px 25px;
     border:none;
-    border-radius:50px;
+    border-radius:30px;
     background:linear-gradient(45deg,#ff416c,#ff4b2b);
     color:white;
-    font-weight:bold;
     cursor:pointer;
-    transition:0.2s;
 }
 
-.btn:hover{transform:scale(1.05);} 
-
-/* EFECTOS */
 .emoji{
     position:absolute;
-    font-size:25px;
+    font-size:24px;
     animation:float 3s linear forwards;
 }
-
 @keyframes float{
-    to{transform:translateY(-120vh) rotate(720deg);opacity:0;} 
+    to{transform:translateY(-120vh) rotate(720deg);opacity:0}
 }
 
-/* DADO */
-#dice{
-    font-size:4rem;
-    margin:20px;
+/* JUEGO MEMORIA */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(4,60px);
+    gap:10px;
+}
+.card{
+    width:60px;height:60px;
+    background:#fff2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    cursor:pointer;
 }
 
+/* BARRA PROGRESO */
+.bar{
+    width:200px;height:10px;
+    background:#fff3;
+    margin-top:15px;
+}
+.fill{
+    height:100%;
+    width:0%;
+    background:#00ffcc;
+}
 </style>
 </head>
-
 <body>
 
-<!-- 1 INTRO -->
+<!-- INTRO -->
 <div class="section active" id="s1">
-<h1>Prepárate 😏</h1>
-<p>Esto no es una página cualquiera...</p>
-<div class="big">19</div>
+<h1>🎡 Bienvenida al parque</h1>
+<p>Hoy no es un día normal...</p>
 <button class="btn" onclick="go(2)">Entrar</button>
 </div>
 
-<!-- 2 STORY -->
+<!-- NIVEL 1 CLICK RAPIDO -->
 <div class="section" id="s2">
-<h1>Pregunta seria...</h1>
-<p>¿Cómo alguien puede ser tan problemática y linda al mismo tiempo? 😂</p>
-<button class="btn" onclick="go(3)">Responder después</button>
+<h1>Nivel 1 ⚡</h1>
+<p>Toca 10 veces rápido</p>
+<button class="btn" onclick="fastClick()">🔥</button>
+<p id="fast">0</p>
 </div>
 
-<!-- 3 GAME CLICK -->
+<!-- NIVEL 2 REFLEJOS -->
 <div class="section" id="s3">
-<h1>Mini reto 💥</h1>
-<p>Toca el botón 7 veces</p>
-<button class="btn" onclick="clickGame()">🔥</button>
-<p id="count">0</p>
-<button class="btn" id="next3" style="display:none" onclick="go(4)">Siguiente</button>
+<h1>Nivel 2 🎯</h1>
+<p>Toca el botón cuando aparezca</p>
+<button id="target" class="btn" style="display:none" onclick="hit()">¡YA!</button>
+<p id="msg"></p>
 </div>
 
-<!-- 4 DICE GAME -->
+<!-- NIVEL 3 MEMORIA -->
 <div class="section" id="s4">
-<h1>Juego oficial 🎲</h1>
-<div id="dice">🎲</div>
-<button class="btn" onclick="roll()">Lanzar dado</button>
-<p id="result"></p>
-<button class="btn" id="next4" style="display:none" onclick="go(5)">Continuar</button>
+<h1>Nivel 3 🧠</h1>
+<p>Encuentra las parejas</p>
+<div class="grid" id="grid"></div>
+<p id="pairs">0/4</p>
 </div>
 
-<!-- 5 CAKE -->
+<!-- NIVEL 4 SUERTE -->
 <div class="section" id="s5">
-<h1>Momento importante 🎂</h1>
-<p>Toca 3 veces para pedir tu deseo</p>
-<button class="btn" onclick="cake()">🎂</button>
-<p id="cakeCount">0/3</p>
-<button class="btn" id="next5" style="display:none" onclick="go(6)">Final</button>
+<h1>Nivel 4 🎰</h1>
+<p>Prueba tu suerte</p>
+<button class="btn" onclick="luck()">Girar</button>
+<p id="luck"></p>
 </div>
 
 <!-- FINAL -->
 <div class="section" id="s6">
-<h1>💖</h1>
-<p style="max-width:400px">
-Ok ya fuera de bromas...
+<h1>💖 Nivel final</h1>
+<p>Ganaste el juego...
 <br><br>
-Eres demasiado importante para mí.
+pero yo gané algo mejor 😏
 <br><br>
-Y aunque molestes bastante 😏
-<br>
-no cambiaría nada de ti.
+Tú.
 <br><br>
-Feliz cumpleaños 🎂
-</p>
+Feliz cumpleaños 🎂</p>
 <button class="btn" onclick="location.reload()">Repetir</button>
 </div>
 
 <script>
-let c=0;
-let cakeC=0;
-
+let fc=0;
 function go(n){
  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
  document.getElementById('s'+n).classList.add('active');
 }
 
-function clickGame(){
- c++;
- document.getElementById('count').innerText=c;
+function fastClick(){
+ fc++;
+ document.getElementById('fast').innerText=fc;
  spawn('🔥');
-
- if(c>=7){
- document.getElementById('next3').style.display='block';
- }
+ if(fc>=10){setTimeout(()=>go(3),500)}
 }
 
-function roll(){
- let dice=document.getElementById('dice');
- let r=Math.floor(Math.random()*6)+1;
- dice.innerText=r;
+/* REFLEJOS */
+setTimeout(()=>{
+ document.getElementById('target').style.display='block';
+},2000);
+function hit(){
+ document.getElementById('msg').innerText='Buen reflejo 😏';
+ spawn('🎯');
+ setTimeout(()=>go(4),1000);
+}
 
- if(r===6){
- document.getElementById('result').innerText='Ganaste 😏';
- spawn('🎉');
- document.getElementById('next4').style.display='block';
+/* MEMORIA */
+let emojis=['😏','😏','🔥','🔥','💖','💖','😂','😂'];
+emojis.sort(()=>Math.random()-0.5);
+let first=null;
+let pairs=0;
+
+emojis.forEach((e,i)=>{
+ let c=document.createElement('div');
+ c.className='card';
+ c.dataset.val=e;
+ c.onclick=()=>flip(c);
+ document.getElementById('grid').appendChild(c);
+});
+
+function flip(c){
+ if(c.innerText) return;
+ c.innerText=c.dataset.val;
+
+ if(!first){first=c;return;}
+
+ if(first.dataset.val===c.dataset.val){
+ pairs++;
+ document.getElementById('pairs').innerText=pairs+'/4';
+ spawn('✨');
+ first=null;
+ if(pairs>=4){setTimeout(()=>go(5),1000)}
  }else{
- document.getElementById('result').innerText='Sigue intentando 😂';
+ setTimeout(()=>{
+ first.innerText='';
+ c.innerText='';
+ first=null;
+ },600);
  }
 }
 
-function cake(){
- cakeC++;
- document.getElementById('cakeCount').innerText=cakeC+'/3';
- spawn('🎂');
-
- if(cakeC>=3){
- document.getElementById('next5').style.display='block';
- confeti();
+/* SUERTE */
+function luck(){
+ let r=Math.random();
+ if(r>0.7){
+ document.getElementById('luck').innerText='GANASTE 🎉';
+ spawn('🎉');
+ setTimeout(()=>go(6),1000);
+ }else{
+ document.getElementById('luck').innerText='Otra vez 😂';
  }
 }
 
@@ -194,12 +207,6 @@ function spawn(e){
  el.style.left=Math.random()*100+'%';
  document.body.appendChild(el);
  setTimeout(()=>el.remove(),3000);
-}
-
-function confeti(){
- for(let i=0;i<80;i++){
- spawn(['🎉','✨','💖','🔥'][Math.floor(Math.random()*4)]);
- }
 }
 </script>
 
