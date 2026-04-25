@@ -180,86 +180,6 @@
             animation: parpadeo 1s infinite;
         }
         
-        #vela.apagada {
-            opacity: 0.2;
-            animation: none;
-        }
-        
-        .humo {
-            position: absolute;
-            top: -50px;
-            left: 50%;
-            font-size: 30px;
-            opacity: 0;
-            animation: humoSube 2s ease-out;
-        }
-        
-        @keyframes humoSube {
-            0% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateX(-50%) translateY(-100px) scale(2); }
-        }
-        
-        #videoFideos {
-            width: 90%;
-            max-width: 400px;
-            border-radius: 15px;
-            border: 4px solid white;
-            margin: 20px 0;
-            box-shadow: 0 0 30px rgba(255,255,255,0.4);
-        }
-        
-        #mensajeFinal {
-            font-size: 1.3rem;
-            line-height: 1.6;
-            padding: 20px;
-            background: rgba(0,0,0,0.4);
-            border-radius: 20px;
-            border: 3px dashed #fff;
-            margin: 20px;
-        }
-        
-        .confeti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            top: -10px;
-            z-index: 999;
-        }
-        
-        .globo {
-            position: absolute;
-            font-size: 40px;
-            animation: globoSube 6s ease-in infinite;
-            opacity: 0.8;
-        }
-        
-        @keyframes globoSube {
-            0% { transform: translateY(100vh) rotate(0deg); }
-            100% { transform: translateY(-100vh) rotate(360deg); }
-        }
-        
-        #controlMusica {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            z-index: 1000;
-            background: rgba(0,0,0,0.5);
-            border: 2px solid white;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            display: none;
-        }
-        
-        .tablero-parchis {
-            background: rgba(0,0,0,0.3);
-            border-radius: 20px;
-            padding: 20px;
-            margin: 20px;
-            border: 3px solid white;
-        }
     </style>
 </head>
 <body>
@@ -525,4 +445,86 @@
                 
                 if (turnoParchis === 0) {
                     dado.textContent = '1️⃣';
-                    document.getElementByI
+                    document.getElementById('puntosElla').textContent = '100';
+                    mensaje.innerHTML = '¡Sacaste 1! 🎉<br><strong>¡GANASTE! 100 PUNTOS</strong><br>Ya pues... celebra nomás 😏';
+                    reproducirSonido('pop');
+                    navigator.vibrate && navigator.vibrate([100, 50, 100]);
+                    
+                    setTimeout(() => {
+                        mensaje.innerHTML = 'Espera... 🤔<br>Mi turno...';
+                        turnoParchis = 1;
+                        btn.textContent = 'Ver mi tiro 😈';
+                        btn.disabled = false;
+                    }, 2000);
+                    
+                } else {
+                    dado.textContent = '💯';
+                    document.getElementById('puntosYo').textContent = '100';
+                    mensaje.innerHTML = 'Regla #1 del Parchís:<br><strong>La casa siempre gana</strong> 😎<br><br>Mentira... es broma...<br><strong>GANASTE TÚ MOCOSA 🏆</strong><br>Pero por poquito jaja';
+                    
+                    reproducirSonido('grito');
+                    navigator.vibrate && navigator.vibrate([200, 100, 200, 100, 200]);
+                    
+                    for(let i = 0; i < 50; i++) {
+                        const confeti = document.createElement('div');
+                        confeti.className = 'confeti';
+                        confeti.textContent = ['😂','🎲','💯','🏆','😈'][Math.floor(Math.random()*5)];
+                        confeti.style.left = Math.random() * 100 + '%';
+                        confeti.style.fontSize = '20px';
+                        document.body.appendChild(confeti);
+                        
+                        confeti.animate([
+                            { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                            { transform: `translateY(${window.innerHeight}px) rotate(720deg)`, opacity: 0 }
+                        ], {
+                            duration: 2000 + Math.random() * 1000
+                        }).onfinish = () => confeti.remove();
+                    }
+                    
+                    btn.style.display = 'none';
+                    document.getElementById('btnSiguienteParchis').style.display = 'inline-block';
+                    juegoTerminado = true;
+                }
+            }, 500);
+        }
+        
+        function lanzarGlobos() {
+            for(let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const globo = document.createElement('div');
+                    globo.className = 'globo';
+                    globo.textContent = ['🎈','🎉','🎊','✨','19'][Math.floor(Math.random()*5)];
+                    globo.style.left = Math.random() * 100 + '%';
+                    globo.style.animationDelay = Math.random() * 2 + 's';
+                    document.getElementById('pantalla4').appendChild(globo);
+                    setTimeout(() => globo.remove(), 6000);
+                }, i * 300);
+            }
+        }
+        
+        function lanzarConfeti() {
+            for(let i = 0; i < 100; i++) {
+                const confeti = document.createElement('div');
+                confeti.className = 'confeti';
+                confeti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confeti.style.left = Math.random() * 100 + '%';
+                document.body.appendChild(confeti);
+                
+                confeti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight + 100}px) rotate(720deg)`, opacity: 0 }
+                ], {
+                    duration: 3000 + Math.random() * 2000
+                }).onfinish = () => confeti.remove();
+            }
+        }
+        
+        function finalEpico() {
+            reproducirSonido('final');
+            lanzarConfeti();
+        }
+        
+        document.getElementById('barca').onclick = gritar;
+    </script>
+</body>
+</html>
