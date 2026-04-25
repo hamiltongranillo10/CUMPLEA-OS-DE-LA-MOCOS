@@ -3,32 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parque de Diversiones 🎡</title>
+<title>Parque de Diversiones 🌊🎡</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
+
 body{
     font-family:'Segoe UI',sans-serif;
-    background: radial-gradient(circle at top,#1a2a6c,#16222a);
     color:white;
     overflow:hidden;
+    text-align:center;
 }
+
+/* 🌊 FONDO MAR ANIMADO */
+body::before{
+    content:"";
+    position:fixed;
+    width:200%;height:200%;
+    background: radial-gradient(circle at 50% 50%, #2a5298, #1e3c72, #0f2027);
+    animation:wave 10s linear infinite;
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:200%;height:200%;
+    background:url("https://svgshare.com/i/13uA.svg");
+    opacity:0.2;
+    animation:wave2 20s linear infinite;
+    z-index:-1;
+}
+
+@keyframes wave{
+    from{transform:translateX(0);} to{transform:translateX(-50%);} }
+@keyframes wave2{
+    from{transform:translateX(0);} to{transform:translateX(-30%);} }
+
 .section{
     display:none;
     height:100vh;
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    text-align:center;
     padding:20px;
 }
-.active{display:flex;animation:fade .6s ease;}
-@keyframes fade{from{opacity:0}to{opacity:1}}
-
-h1{margin-bottom:10px;}
+.active{display:flex;}
 
 .btn{
-    margin-top:20px;
+    margin-top:15px;
     padding:12px 25px;
     border:none;
     border-radius:30px;
@@ -37,110 +60,102 @@ h1{margin-bottom:10px;}
     cursor:pointer;
 }
 
+/* PUZZLE */
+#puzzle{
+    display:grid;
+    grid-template-columns:repeat(3,80px);
+    gap:5px;
+}
+.piece{
+    width:80px;height:80px;
+    background-size:240px 240px;
+    cursor:grab;
+}
+
+.slot{
+    width:80px;height:80px;
+    border:2px dashed #fff5;
+}
+
+/* EMOJIS */
 .emoji{
     position:absolute;
     font-size:24px;
     animation:float 3s linear forwards;
 }
-@keyframes float{
-    to{transform:translateY(-120vh) rotate(720deg);opacity:0}
-}
+@keyframes float{to{transform:translateY(-120vh);opacity:0}}
 
-/* JUEGO MEMORIA */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(4,60px);
-    gap:10px;
-}
-.card{
-    width:60px;height:60px;
-    background:#fff2;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:24px;
-    cursor:pointer;
-}
-
-/* BARRA PROGRESO */
-.bar{
-    width:200px;height:10px;
-    background:#fff3;
-    margin-top:15px;
-}
-.fill{
-    height:100%;
-    width:0%;
-    background:#00ffcc;
-}
 </style>
 </head>
+
 <body>
 
 <!-- INTRO -->
 <div class="section active" id="s1">
-<h1>🎡 Bienvenida al parque</h1>
-<p>Hoy no es un día normal...</p>
-<button class="btn" onclick="go(2)">Entrar</button>
+<h1>🌊 Bienvenida</h1>
+<p>Hoy entras a un juego real 😏</p>
+<button class="btn" onclick="go(2)">Empezar</button>
 </div>
 
-<!-- NIVEL 1 CLICK RAPIDO -->
+<!-- NIVEL 1 REFLEJOS -->
 <div class="section" id="s2">
-<h1>Nivel 1 ⚡</h1>
-<p>Toca 10 veces rápido</p>
-<button class="btn" onclick="fastClick()">🔥</button>
-<p id="fast">0</p>
-</div>
-
-<!-- NIVEL 2 REFLEJOS -->
-<div class="section" id="s3">
-<h1>Nivel 2 🎯</h1>
-<p>Toca el botón cuando aparezca</p>
+<h1>🎯 Reflejos</h1>
+<p>Toca cuando aparezca</p>
 <button id="target" class="btn" style="display:none" onclick="hit()">¡YA!</button>
 <p id="msg"></p>
 </div>
 
-<!-- NIVEL 3 MEMORIA -->
+<!-- NIVEL 2 MEMORIA -->
+<div class="section" id="s3">
+<h1>🧠 Memoria</h1>
+<div id="grid"></div>
+<p id="pairs">0</p>
+</div>
+
+<!-- NIVEL 3 PUZZLE -->
 <div class="section" id="s4">
-<h1>Nivel 3 🧠</h1>
-<p>Encuentra las parejas</p>
-<div class="grid" id="grid"></div>
-<p id="pairs">0/4</p>
+<h1>🧩 Rompecabezas</h1>
+<p>Arma la imagen 😏</p>
+<div id="puzzle"></div>
+<p id="done"></p>
 </div>
 
 <!-- NIVEL 4 SUERTE -->
 <div class="section" id="s5">
-<h1>Nivel 4 🎰</h1>
-<p>Prueba tu suerte</p>
-<button class="btn" onclick="luck()">Girar</button>
+<h1>🎰 Suerte</h1>
+<button class="btn" onclick="luck()">Intentar</button>
 <p id="luck"></p>
 </div>
 
 <!-- FINAL -->
 <div class="section" id="s6">
-<h1>💖 Nivel final</h1>
-<p>Ganaste el juego...
-<br><br>
-pero yo gané algo mejor 😏
-<br><br>
-Tú.
-<br><br>
-Feliz cumpleaños 🎂</p>
+<h1>💖</h1>
+<p>Ganaste todo...
+<br><br>pero yo te gané a ti 😏
+<br><br>Feliz cumpleaños 🎂</p>
 <button class="btn" onclick="location.reload()">Repetir</button>
+<!-- SECCION AMIGAS + VIDEO -->
+<div class="section" id="sExtra">
+<h1>😏 Tus cómplices</h1>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+<img src="FOTO_AMIGA1.jpg" style="width:80px;height:80px;border-radius:50%;object-fit:cover;">
+<img src="FOTO_AMIGA2.jpg" style="width:80px;height:80px;border-radius:50%;object-fit:cover;">
+<img src="FOTO_AMIGA3.jpg" style="width:80px;height:80px;border-radius:50%;object-fit:cover;">
+</div>
+
+<h2 style="margin-top:20px;">📹 Evidencia</h2>
+<video controls width="260">
+<source src="VIDEO_FIDEOS.mp4" type="video/mp4">
+</video>
+
+<button class="btn" onclick="go(6)">Seguir 😏</button>
 </div>
 
 <script>
-let fc=0;
 function go(n){
  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
  document.getElementById('s'+n).classList.add('active');
-}
-
-function fastClick(){
- fc++;
- document.getElementById('fast').innerText=fc;
- spawn('🔥');
- if(fc>=10){setTimeout(()=>go(3),500)}
 }
 
 /* REFLEJOS */
@@ -148,50 +163,87 @@ setTimeout(()=>{
  document.getElementById('target').style.display='block';
 },2000);
 function hit(){
- document.getElementById('msg').innerText='Buen reflejo 😏';
+ document.getElementById('msg').innerText='🔥 rápido';
  spawn('🎯');
- setTimeout(()=>go(4),1000);
+ setTimeout(()=>go(3),1000);
 }
 
-/* MEMORIA */
-let emojis=['😏','😏','🔥','🔥','💖','💖','😂','😂'];
+/* MEMORIA SIMPLE */
+let emojis=['😏','😏','🔥','🔥'];
 emojis.sort(()=>Math.random()-0.5);
-let first=null;
-let pairs=0;
+let first=null, pairs=0;
 
-emojis.forEach((e,i)=>{
- let c=document.createElement('div');
- c.className='card';
- c.dataset.val=e;
- c.onclick=()=>flip(c);
- document.getElementById('grid').appendChild(c);
+emojis.forEach(e=>{
+ let d=document.createElement('button');
+ d.className='btn';
+ d.onclick=()=>flip(d,e);
+ d.dataset.val=e;
+ document.getElementById('grid').appendChild(d);
 });
 
-function flip(c){
- if(c.innerText) return;
- c.innerText=c.dataset.val;
+function flip(el,val){
+ if(el.innerText) return;
+ el.innerText=val;
 
- if(!first){first=c;return;}
+ if(!first){first=el;return;}
 
- if(first.dataset.val===c.dataset.val){
+ if(first.dataset.val===el.dataset.val){
  pairs++;
- document.getElementById('pairs').innerText=pairs+'/4';
- spawn('✨');
+ document.getElementById('pairs').innerText=pairs;
  first=null;
- if(pairs>=4){setTimeout(()=>go(5),1000)}
+ if(pairs>=2){setTimeout(()=>go(4),1000)}
  }else{
  setTimeout(()=>{
  first.innerText='';
- c.innerText='';
+ el.innerText='';
  first=null;
- },600);
+ },500);
+ }
+}
+
+/* PUZZLE DRAG */
+let order=[0,1,2,3,4,5,6,7,8];
+order.sort(()=>Math.random()-0.5);
+
+order.forEach(i=>{
+ let p=document.createElement('div');
+ p.className='piece';
+ p.draggable=true;
+ p.dataset.index=i;
+ p.style.backgroundImage='url(FOTO_DE_ELLA.jpg)';
+ p.style.backgroundPosition=`${(i%3)*-80}px ${Math.floor(i/3)*-80}px`;
+ p.ondragstart=e=>e.dataTransfer.setData('i',i);
+ p.ondrop=drop;
+ p.ondragover=e=>e.preventDefault();
+ document.getElementById('puzzle').appendChild(p);
+});
+
+function drop(e){
+ let from=e.dataTransfer.getData('i');
+ let to=e.target.dataset.index;
+
+ let pieces=document.querySelectorAll('.piece');
+ let temp=pieces[from].style.backgroundPosition;
+ pieces[from].style.backgroundPosition=pieces[to].style.backgroundPosition;
+ pieces[to].style.backgroundPosition=temp;
+
+ checkPuzzle();
+}
+
+function checkPuzzle(){
+ let correct=0;
+ document.querySelectorAll('.piece').forEach((p,i)=>{
+ if(p.style.backgroundPosition===`${(i%3)*-80}px ${Math.floor(i/3)*-80}px`){correct++;}
+ });
+ if(correct===9){
+ document.getElementById('done').innerText='Listo 😏';
+ setTimeout(()=>go(5),1000);
  }
 }
 
 /* SUERTE */
 function luck(){
- let r=Math.random();
- if(r>0.7){
+ if(Math.random()>0.6){
  document.getElementById('luck').innerText='GANASTE 🎉';
  spawn('🎉');
  setTimeout(()=>go(6),1000);
