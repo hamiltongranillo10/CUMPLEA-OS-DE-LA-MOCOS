@@ -3,19 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Página especial ❤️</title>
+<title>Para ti ❤️</title>
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
 body{
-    margin:0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(180deg,#1e3c72,#2a5298);
+    background: linear-gradient(180deg,#1e3c72,#2a5298,#87CEEB);
     color:white;
     text-align:center;
+    overflow-x:hidden;
 }
 
-/* SECCIONES */
-.section{
+/* BOTÓN MÚSICA */
+#controlMusica{
+    position:fixed;
+    top:10px;
+    right:10px;
+    z-index:999;
+    background:#0008;
+    border:none;
+    font-size:20px;
+    padding:10px;
+    border-radius:50%;
+    color:white;
+}
+
+/* PANTALLAS */
+.pantalla{
     display:none;
     min-height:100vh;
     justify-content:center;
@@ -24,108 +40,209 @@ body{
     padding:20px;
 }
 
-.active{display:flex;}
+.activa{display:flex;}
 
-h1{font-size:2rem;}
+h1,h2{text-shadow:2px 2px black;}
+
 .edad{
     font-size:5rem;
     color:gold;
+    animation:brillo 2s infinite;
 }
 
-/* BOTÓN */
-button{
-    margin-top:20px;
+@keyframes brillo{
+    0%,100%{text-shadow:0 0 10px gold;}
+    50%{text-shadow:0 0 30px gold;}
+}
+
+.btn{
+    background:#ff6b6b;
     padding:15px 25px;
-    border:none;
     border-radius:40px;
-    background:#ff4d6d;
+    border:none;
     color:white;
-    font-size:1rem;
+    font-weight:bold;
+    margin-top:20px;
     cursor:pointer;
+}
+
+/* IMAGEN */
+.foto{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    border:5px solid white;
+    object-fit:cover;
+    margin:20px 0;
+}
+
+/* CORAZONES */
+.corazon{
+    position:absolute;
+    animation:flotar 3s forwards;
+}
+
+@keyframes flotar{
+    0%{opacity:1;transform:translateY(0);}
+    100%{opacity:0;transform:translateY(-200px);}
+}
+
+/* CONFETI */
+.confeti{
+    position:fixed;
+    width:10px;
+    height:10px;
+    top:0;
+}
+
+/* GLOBOS */
+.globo{
+    position:absolute;
+    bottom:-50px;
+    font-size:25px;
+    animation:subir 6s linear;
+}
+
+@keyframes subir{
+    to{transform:translateY(-120vh);}
+}
+
+/* HUMO */
+.humo{
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    animation:humo 2s forwards;
+}
+
+@keyframes humo{
+    to{opacity:0;transform:translateY(-80px);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- INICIO -->
-<div class="section active" id="s1">
-<h1>Hey 😏</h1>
-<p>Esto es para tus</p>
+<button id="controlMusica" onclick="toggleMusica()">🔊</button>
+
+<!-- PANTALLA 1 -->
+<div class="pantalla activa" id="p1">
+<h1>Hey Mocosa 😏</h1>
+<p>Tus</p>
 <div class="edad">19</div>
 
-<button onclick="next(2)">Entrar</button>
+<img class="foto" src="https://i.imgur.com/yourimage.jpg">
+
+<button class="btn" onclick="next(2)">Entrar 👀</button>
 </div>
 
-<!-- HISTORIA -->
-<div class="section" id="s2">
-<h1>Te acuerdas de nosotros?</h1>
-<p>Todo empezó con algo simple...</p>
+<!-- PANTALLA 2 -->
+<div class="pantalla" id="p2">
+<h2>¿Te acuerdas de nosotros? 😏</h2>
 
-<button onclick="next(3)">Seguir</button>
+<button class="btn" onclick="next(3)">Siguiente</button>
 </div>
 
-<!-- INTERACCIÓN -->
-<div class="section" id="s3">
-<h1>Haz esto 👇</h1>
-<p>Toca el botón 5 veces</p>
+<!-- PANTALLA 3 -->
+<div class="pantalla" id="p3">
+<h2>La barca 🏴‍☠️</h2>
+<p>Tócala varias veces</p>
 
-<button onclick="contar()">❤️</button>
+<button class="btn" onclick="corazones()">❤️</button>
 <p id="contador">0</p>
 
-<button id="btnNext" style="display:none;" onclick="next(4)">Continuar</button>
+<button class="btn" id="btnNext" style="display:none;" onclick="next(4)">Continuar</button>
 </div>
 
-<!-- CUMPLE -->
-<div class="section" id="s4">
+<!-- PANTALLA 4 -->
+<div class="pantalla" id="p4">
 <h1>🎂 Feliz Cumpleaños</h1>
-<p>Toca 3 veces para pedir tu deseo</p>
 
-<button onclick="soplar()">🎂</button>
+<img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" width="150" onclick="soplar()">
+
 <p id="soplos">0/3</p>
 
-<button id="btnFinal" style="display:none;" onclick="next(5)">Final</button>
+<button class="btn" id="finalBtn" style="display:none;" onclick="next(5)">Final</button>
 </div>
 
 <!-- FINAL -->
-<div class="section" id="s5">
+<div class="pantalla" id="p5">
 <h1>💖</h1>
 <p>
 Eres muy importante para mí.<br><br>
-Feliz cumpleaños 😏
+Gracias por existir.<br>
+Y feliz cumpleaños 😏
 </p>
 
-<button onclick="location.reload()">Reiniciar</button>
+<button class="btn" onclick="location.reload()">Repetir</button>
 </div>
 
+<audio id="musica" loop src="https://www.soundjay.com/misc/sounds/carnival-1.mp3"></audio>
+
 <script>
-let count = 0;
-let soplos = 0;
+let count=0;
+let soplo=0;
 
-/* CAMBIAR SECCIÓN */
 function next(n){
-document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-document.getElementById('s'+n).classList.add('active');
+document.querySelectorAll('.pantalla').forEach(p=>p.classList.remove('activa'));
+document.getElementById('p'+n).classList.add('activa');
 }
 
-/* CONTADOR */
-function contar(){
+function corazones(){
 count++;
-document.getElementById('contador').innerText = count;
+document.getElementById('contador').innerText=count;
 
-if(count >= 5){
-document.getElementById('btnNext').style.display = 'block';
+let c=document.createElement('div');
+c.className='corazon';
+c.innerText='❤️';
+c.style.left=Math.random()*100+'%';
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),3000);
+
+if(count>=5){
+document.getElementById('btnNext').style.display='block';
 }
 }
 
-/* SOPLAR */
 function soplar(){
-soplos++;
-document.getElementById('soplos').innerText = soplos + "/3";
+soplo++;
+document.getElementById('soplos').innerText=soplo+'/3';
 
-if(soplos >= 3){
-document.getElementById('btnFinal').style.display = 'block';
+let h=document.createElement('div');
+h.className='humo';
+h.innerText='💨';
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),2000);
+
+if(soplo>=3){
+document.getElementById('finalBtn').style.display='block';
+confeti();
 }
+}
+
+function confeti(){
+for(let i=0;i<50;i++){
+let c=document.createElement('div');
+c.className='confeti';
+c.style.left=Math.random()*100+'%';
+c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+document.body.appendChild(c);
+
+c.animate([
+{transform:'translateY(0)'},
+{transform:'translateY(100vh)'}
+],{duration:3000});
+
+setTimeout(()=>c.remove(),3000);
+}
+}
+
+function toggleMusica(){
+let m=document.getElementById('musica');
+if(m.paused){m.play();}else{m.pause();}
 }
 </script>
 
