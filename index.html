@@ -87,6 +87,11 @@
             box-shadow: 0 4px 0 #c44545;
         }
         
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
         #fotoElla, .foto-amiga {
             width: 120px;
             height: 120px;
@@ -247,6 +252,14 @@
             cursor: pointer;
             display: none;
         }
+        
+        .tablero-parchis {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px;
+            border: 3px solid white;
+        }
     </style>
 </head>
 <body>
@@ -329,14 +342,48 @@
         <div id="mensajeTorta" style="display:none; margin-top: 20px;">
             <h2 style="color: #FFD700;">¡FELIZ CUMPLEAÑOS DE 19! 🎉</h2>
             <p style="font-size: 1.1rem; margin: 15px 0;">Pide un deseo... </p>
-            <p style="font-size: 0.9rem; opacity: 0.8;">Pstd: La torta me la robe, ya tienes 19 😂🥳</p>
+            <p style="font-size: 0.9rem; opacity: 0.8;">Pstd: La torta la pagas tú, ya tienes 19 😂💸</p>
         </div>
         
-        <button class="btn" id="btnFinalCumple" style="display:none;" onclick="siguientePantalla(5); finalEpico()">Ya pedí mi deseo ✨</button>
+        <button class="btn" id="btnFinalCumple" style="display:none;" onclick="siguientePantalla(5)">Ya pedí mi deseo ✨</button>
     </div>
 
-    <!-- PANTALLA 5: FINAL -->
+    <!-- PANTALLA 5: PARCHÍS TROLEADA -->
     <div class="pantalla" id="pantalla5">
+        <h1>Hora del Desquite 🎲</h1>
+        <h2>Parchís: Tú VS Yo</h2>
+        
+        <div class="tablero-parchis">
+            <p style="font-size: 1.3rem; margin-bottom: 15px;">TABLERO</p>
+            
+            <div style="display: flex; justify-content: space-around; margin-bottom: 20px;">
+                <div>
+                    <img src="FOTO_DE_ELLA.jpg" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ff6b6b;">
+                    <p>TÚ 🔴</p>
+                    <p id="puntosElla" style="font-size: 2rem; font-weight: bold; color: #ff6b6b;">99</p>
+                </div>
+                <div style="font-size: 3rem;">VS</div>
+                <div>
+                    <div style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #4ecdc4; background: #2a5298; display: flex; align-items: center; justify-content: center; font-size: 2rem;">😎</div>
+                    <p>YO 🔵</p>
+                    <p id="puntosYo" style="font-size: 2rem; font-weight: bold; color: #4ecdc4;">1</p>
+                </div>
+            </div>
+            
+            <p id="mensajeParchis" style="font-size: 1.1rem; margin: 15px 0; min-height: 50px;">
+                Vas ganando por PALIZA... tira el dado 🎲
+            </p>
+            
+            <div id="dado" style="font-size: 4rem; margin: 20px; transition: transform 0.3s;">🎲</div>
+            
+            <button class="btn" id="btnTirar" onclick="tirarDado()">¡Tirar Dado!</button>
+        </div>
+        
+        <button class="btn" id="btnSiguienteParchis" style="display:none;" onclick="siguientePantalla(6); finalEpico()">Jaja ok ya... siguiente 😂</button>
+    </div>
+
+    <!-- PANTALLA 6: FINAL -->
+    <div class="pantalla" id="pantalla6">
         <h1>Bueno ya... 19 años y sigues igual 🏆</h1>
         <div id="mensajeFinal">
             ERES MUY IMPORTANTE PARA MI MOCOSA NUNCA LO OLVIDES Y ESPERO TE HAYAS DIVERTIDO CON TODO ESTO, TE QUIERO Y SIEMPRE VOY A QUERER ESTAR PARA TI❤️
@@ -366,20 +413,20 @@
         let gritos = 0;
         let soplidos = 0;
         let musicaActiva = false;
+        let turnoParchis = 0;
+        let juegoTerminado = false;
         
         function siguientePantalla(num) {
             document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
             document.getElementById('pantalla' + num).classList.add('activa');
             window.scrollTo(0, 0);
             
-            // Música de feria en pantalla 3
             if(num === 3) {
                 iniciarMusicaFeria();
             } else {
                 pararMusicaFeria();
             }
             
-            // Música de cumpleaños en pantalla 4
             if(num === 4) {
                 reproducirSonido('cumple');
                 lanzarGlobos();
@@ -462,41 +509,20 @@
             }
         }
         
-        function lanzarGlobos() {
-            for(let i = 0; i < 10; i++) {
-                setTimeout(() => {
-                    const globo = document.createElement('div');
-                    globo.className = 'globo';
-                    globo.textContent = ['🎈','🎉','🎊','✨','19'][Math.floor(Math.random()*5)];
-                    globo.style.left = Math.random() * 100 + '%';
-                    globo.style.animationDelay = Math.random() * 2 + 's';
-                    document.getElementById('pantalla4').appendChild(globo);
-                    setTimeout(() => globo.remove(), 6000);
-                }, i * 300);
-            }
-        }
-        
-        function finalEpico() {
-            reproducirSonido('final');
-            for(let i = 0; i < 150; i++) {
-                const confeti = document.createElement('div');
-                confeti.className = 'confeti';
-                confeti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                confeti.style.left = Math.random() * 100 + '%';
-                confeti.style.transform = `rotate(${Math.random() * 360}deg)`;
-                document.body.appendChild(confeti);
+        function tirarDado() {
+            if (juegoTerminado) return;
+            
+            const dado = document.getElementById('dado');
+            const btn = document.getElementById('btnTirar');
+            const mensaje = document.getElementById('mensajeParchis');
+            btn.disabled = true;
+            
+            dado.style.transform = 'rotate(360deg) scale(1.3)';
+            reproducirSonido('click');
+            
+            setTimeout(() => {
+                dado.style.transform = 'rotate(0deg) scale(1)';
                 
-                confeti.animate([
-                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                    { transform: `translateY(${window.innerHeight + 100}px) rotate(720deg)`, opacity: 0 }
-                ], {
-                    duration: 3000 + Math.random() * 2000,
-                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                }).onfinish = () => confeti.remove();
-            }
-        }
-        
-        document.getElementById('barca').onclick = gritar;
-    </script>
-</body>
-</html>
+                if (turnoParchis === 0) {
+                    dado.textContent = '1️⃣';
+                    document.getElementByI
