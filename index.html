@@ -3,157 +3,257 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mirian Ramírez | Salud, Bienestar y Oportunidad de Negocio</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Mirian Ramírez | Quantum Health & Business Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --p:#5B1FA8;--p2:#7C3AED;--p3:#EDE9FE;
-  --gold:#D4A017;--gold2:#F5CC5A;
-  --dark:#12082A;--mid:#3B2060;--gray:#7C6F8E;
-  --light:#FAF8FF;--white:#fff;--green:#16A34A;
+:root {
+  --p: #8B5CF6;       /* Morado Neón */
+  --p-glow: rgba(139, 92, 246, 0.4);
+  --gold: #F5CC5A;    /* Oro Líquido */
+  --gold-glow: rgba(245, 204, 90, 0.3);
+  --dark-bg: #070214; /* Espacio Profundo */
+  --card-bg: rgba(20, 10, 35, 0.65);
+  --text-main: #E2E8F0;
+  --text-muted: #94A3B8;
+  --green-neon: #10B981;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Outfit',sans-serif;background:var(--light);color:var(--dark);overflow-x:hidden;}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,255,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(91,31,168,0.1);}
-.logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--p);}
-.logo em{color:var(--gold);font-style:normal;}
-.logo span{font-family:'Outfit';font-size:.75rem;font-weight:400;color:var(--gray);margin-left:4px;}
-.nav-right{display:flex;gap:10px;align-items:center;}
-.nav-pill{padding:9px 20px;border-radius:50px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .25s;}
-.nav-pill.outline{border:1.5px solid var(--p);color:var(--p);}
-.nav-pill.outline:hover{background:var(--p3);}
-.nav-pill.filled{background:var(--p);color:#fff;}
-.nav-pill.filled:hover{background:var(--mid);transform:translateY(-1px);box-shadow:0 6px 18px rgba(91,31,168,.3);}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { 
+  font-family: 'Outfit', sans-serif; 
+  background-color: var(--dark-bg); 
+  color: var(--text-main); 
+  overflow-x: hidden;
+  position: relative;
+}
 
-/* HERO */
-.hero{min-height:100vh;padding:120px 48px 80px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;pointer-events:none;z-index:0;}
-.hero-bg::before{content:'';position:absolute;right:-100px;top:-100px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(91,31,168,.1) 0%,transparent 70%);}
-.hero-bg::after{content:'';position:absolute;left:-50px;bottom:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,23,.1) 0%,transparent 70%);}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(91,31,168,.12),rgba(212,160,23,.12));border:1px solid rgba(91,31,168,.2);color:var(--p);padding:7px 18px;border-radius:50px;font-size:.8rem;font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-bottom:28px;position:relative;z-index:2;}
-.hero-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:blink 2s infinite;}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5.5vw,5rem);font-weight:700;line-height:1.05;color:var(--dark);position:relative;z-index:2;margin-bottom:20px;}
-.hero h1 .accent{color:var(--p);}
-.hero h1 .ul-gold{position:relative;display:inline-block;}
-.hero h1 .ul-gold::after{content:'';position:absolute;bottom:2px;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:3px;}
-.hero-sub{font-size:1.1rem;color:var(--gray);max-width:560px;line-height:1.75;margin:0 auto 48px;position:relative;z-index:2;}
-.paths{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:780px;width:100%;margin:0 auto;position:relative;z-index:2;}
-.path-card{border-radius:24px;padding:32px 28px 28px;text-align:left;cursor:pointer;transition:all .35s;text-decoration:none;display:flex;flex-direction:column;gap:14px;}
-.path-card.buy{background:linear-gradient(145deg,#fff,#F3EEFF);border:2px solid rgba(91,31,168,.15);box-shadow:0 4px 24px rgba(91,31,168,.07);}
-.path-card.buy:hover{border-color:var(--p);transform:translateY(-6px);box-shadow:0 16px 40px rgba(91,31,168,.15);}
-.path-card.biz{background:linear-gradient(145deg,var(--p),var(--mid));border:2px solid transparent;box-shadow:0 4px 24px rgba(91,31,168,.3);}
-.path-card.biz:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(91,31,168,.45);}
-.path-icon{font-size:2.2rem;}
-.path-tag{display:inline-block;padding:4px 12px;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin-bottom:2px;}
-.path-card.buy .path-tag{background:rgba(91,31,168,.1);color:var(--p);}
-.path-card.biz .path-tag{background:rgba(255,255,255,.2);color:#fff;}
-.path-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;line-height:1.15;}
-.path-card.buy .path-title{color:var(--dark);}
-.path-card.biz .path-title{color:#fff;}
-.path-desc{font-size:.88rem;line-height:1.65;}
-.path-card.buy .path-desc{color:var(--gray);}
-.path-card.biz .path-desc{color:rgba(255,255,255,.75);}
-.path-hl{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;font-size:.85rem;font-weight:600;}
-.path-card.buy .path-hl{background:rgba(22,163,74,.1);color:var(--green);}
-.path-card.biz .path-hl{background:rgba(255,255,255,.15);color:var(--gold2);}
-.path-cta{display:flex;align-items:center;justify-content:space-between;margin-top:4px;}
-.path-cta-text{font-weight:600;font-size:.9rem;}
-.path-card.buy .path-cta-text{color:var(--p);}
-.path-card.biz .path-cta-text{color:#fff;}
-.path-arrow{font-size:1.1rem;transition:transform .25s;}
-.path-card:hover .path-arrow{transform:translateX(5px);}
-.paths-note{font-size:.8rem;color:var(--gray);margin-top:14px;position:relative;z-index:2;}
+/* FONDO ANIMADO CUÁNTICO */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(245, 204, 90, 0.08) 0%, transparent 45%);
+  z-index: -1;
+}
 
-/* SECCIÓN BENEFICIOS */
-.benefits-wrap{padding:80px 48px;max-width:1200px;margin:0 auto;}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
-.col-label{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
-.col-label.green{color:var(--green);}
-.col-label.gold{color:var(--gold);}
-.col-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,2.5vw,2.1rem);font-weight:700;line-height:1.2;color:var(--dark);margin-bottom:24px;}
-.blist{display:flex;flex-direction:column;gap:14px;}
-.bitem{display:flex;align-items:flex-start;gap:14px;background:var(--white);border-radius:16px;padding:18px 20px;border:1px solid rgba(91,31,168,.07);box-shadow:0 2px 10px rgba(0,0,0,.03);transition:transform .3s,box-shadow .3s;}
-.bitem:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(91,31,168,.09);}
-.bitem-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px;}
-.bitem-title{font-weight:700;font-size:.95rem;margin-bottom:3px;color:var(--dark);}
-.bitem-desc{font-size:.83rem;color:var(--gray);line-height:1.55;}
-.disc-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--green),#15803D);color:#fff;padding:14px 24px;border-radius:16px;font-weight:700;font-size:1rem;margin-top:20px;box-shadow:0 4px 16px rgba(22,163,74,.3);}
+/* NAVEGACIÓN FUTURISTA */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(7, 2, 20, 0.75);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+}
+.logo { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: 2px; color: #fff; }
+.logo em { color: var(--gold); font-style: normal; text-shadow: 0 0 10px var(--gold-glow); }
+.logo span { font-family: 'Outfit'; font-size: .7rem; color: var(--text-muted); letter-spacing: 1px; margin-left: 8px; }
 
-/* HOW IT WORKS */
-.how-section{background:var(--dark);color:#fff;padding:80px 48px;position:relative;overflow:hidden;}
-.how-glow{position:absolute;top:-180px;right:-180px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(91,31,168,.4) 0%,transparent 70%);pointer-events:none;}
-.how-inner{max-width:1100px;margin:0 auto;position:relative;z-index:2;}
-.sec-label{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
-.sec-label.gold{color:var(--gold2);}
-.sec-label.amber{color:var(--gold);}
-.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;margin-bottom:10px;}
-.sec-title.white{color:#fff;}
-.sec-title.dark{color:var(--dark);}
-.sec-sub{font-size:.95rem;max-width:480px;line-height:1.7;margin-bottom:44px;}
-.sec-sub.gray{color:var(--gray);}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:60px;position:relative;}
-.steps::before{content:'';position:absolute;top:27px;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),rgba(124,58,237,.5),rgba(255,255,255,.15),transparent);}
-.step{text-align:center;position:relative;z-index:2;}
-.step-num{width:54px;height:54px;border-radius:50%;background:var(--p2);color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 0 0 8px rgba(124,58,237,.2);}
-.step-title{font-weight:700;font-size:.95rem;color:#fff;margin-bottom:8px;}
-.step-text{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6;}
+.nav-right { display: flex; gap: 15px; }
+.nav-pill {
+  padding: 10px 24px; border-radius: 4px; font-family: 'Orbitron', sans-serif;
+  font-size: .75rem; font-weight: 600; letter-spacing: 1px; cursor: pointer;
+  text-decoration: none; transition: all .3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative; overflow: hidden;
+}
+.nav-pill.outline {
+  border: 1px solid var(--p); color: var(--p);
+  box-shadow: inset 0 0 8px rgba(139, 92, 246, 0.1);
+}
+.nav-pill.outline:hover { background: var(--p); color: #fff; box-shadow: 0 0 15px var(--p-glow); }
+.nav-pill.filled { background: linear-gradient(90deg, var(--p), #6D28D9); color: #fff; border: 1px solid transparent;}
+.nav-pill.filled:hover { transform: translateY(-2px); box-shadow: 0 0 20px var(--p-glow); }
 
-/* TESTIMONIOS */
-.test-section{padding:80px 48px;background:var(--p3);}
-.test-inner{max-width:1100px;margin:0 auto;}
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px;}
-.test-card{background:var(--white);border-radius:20px;padding:28px;box-shadow:0 2px 14px rgba(91,31,168,.07);border:1px solid rgba(91,31,168,.08);transition:transform .3s;display:flex;flex-direction:column;gap:16px;}
-.test-card:hover{transform:translateY(-4px);}
-.test-type{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;width:fit-content;}
-.test-type.consumer{background:rgba(22,163,74,.1);color:var(--green);}
-.test-type.distributor{background:rgba(91,31,168,.1);color:var(--p);}
-.stars{color:var(--gold);letter-spacing:2px;font-size:.95rem;}
-.test-text{font-size:.92rem;color:var(--dark);line-height:1.7;font-style:italic;flex:1;}
-.test-author{display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1px solid rgba(91,31,168,.07);}
-.author-avatar{width:45px;height:45px;border-radius:50%;background:var(--p3);color:var(--p);font-size:1.2rem;display:flex;align-items:center;justify-content:center;font-weight:bold;}
-.author-name{font-weight:700;font-size:.88rem;color:var(--dark);}
-.author-city{font-size:.76rem;color:var(--gray);margin-top:2px;}
+/* HERO INTERACTIVO */
+.hero { min-height: 100vh; padding: 150px 48px 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(139, 92, 246, 0.1); border: 1px solid var(--p);
+  color: #fff; padding: 8px 20px; border-radius: 4px; font-family: 'Orbitron', sans-serif;
+  font-size: .75rem; letter-spacing: 2px; margin-bottom: 32px;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+}
+.hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-neon); box-shadow: 0 0 10px var(--green-neon); }
 
-/* PERFIL MIRIAN */
-.profile-section{padding:80px 48px;background:var(--white);position:relative;overflow:hidden;}
-.profile-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:300px 1fr;gap:64px;align-items:center;position:relative;z-index:2;}
-.profile-photo-wrap{width:260px;height:260px;border-radius:50%;background:linear-gradient(135deg,var(--p),var(--gold));padding:5px;}
-.profile-frame{width:100%;height:100%;border-radius:50%;background:var(--p3);display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--p);font-weight:bold;}
-.profile-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-.profile-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:700;color:var(--dark);line-height:1.1;margin-bottom:6px;}
-.profile-role{font-size:1rem;color:var(--p);font-weight:600;margin-bottom:24px;}
-.profile-bio{font-size:.97rem;color:var(--gray);line-height:1.8;margin-bottom:28px;max-width:540px;}
+.hero h1 {
+  font-family: 'Orbitron', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900;
+  line-height: 1.1; letter-spacing: -1px; margin-bottom: 24px; color: #fff;
+}
+.hero h1 .accent {
+  color: transparent; -webkit-background-clip: text;
+  background-image: linear-gradient(90deg, var(--p), #C084FC);
+  filter: drop-shadow(0 0 15px var(--p-glow));
+}
+.hero h1 .ul-gold {
+  color: transparent; -webkit-background-clip: text;
+  background-image: linear-gradient(90deg, var(--gold), #FFE4A0);
+  filter: drop-shadow(0 0 15px var(--gold-glow));
+}
+.hero-sub { font-size: 1.15rem; color: var(--text-muted); max-width: 640px; line-height: 1.8; margin: 0 auto 56px; }
 
-/* FORMULARIO */
-.cta-section{padding:80px 48px;background:var(--white);text-align:center;}
-.cta-inner{max-width:600px;margin:0 auto;}
-.intent-sel{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;}
-.intent-btn{padding:14px 16px;border-radius:14px;border:2px solid rgba(91,31,168,.2);background:var(--light);cursor:pointer;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:600;color:var(--gray);transition:all .25s;}
-.intent-btn.active{border-color:var(--p);background:var(--p3);color:var(--p);box-shadow:inset 0 0 0 1px var(--p);}
-.form-box{background:var(--light);border-radius:24px;padding:32px;border:1px solid rgba(91,31,168,.1);text-align:left;}
-.form-group{margin-bottom:16px;}
-.form-label{font-size:.8rem;font-weight:600;color:var(--dark);display:block;margin-bottom:6px;}
-.form-input{width:100%;padding:13px 16px;border-radius:12px;border:1.5px solid rgba(91,31,168,.18);font-family:'Outfit',sans-serif;font-size:.93rem;outline:none;transition:border .2s;background:var(--white);color:var(--dark);}
-.form-input:focus{border-color:var(--p);}
-.submit-btn{width:100%;background:var(--p);color:#fff;padding:17px;border:none;border-radius:14px;font-family:'Outfit',sans-serif;font-size:.98rem;font-weight:700;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px;}
-.submit-btn:hover{background:var(--mid);transform:translateY(-2px);box-shadow:0 10px 28px rgba(91,31,168,.35);}
+/* PLATAFORMAS / PATHS MULTIVERSO */
+.paths { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 900px; width: 100%; margin: 0 auto; }
+.path-card {
+  background: var(--card-bg); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px;
+  padding: 40px 32px; text-align: left; text-decoration: none;
+  display: flex; flex-direction: column; gap: 20px;
+  transition: all .4s cubic-bezier(0.16, 1, 0.3, 1); position: relative;
+}
+.path-card::before {
+  content: ''; position: absolute; inset: 0; border-radius: 12px;
+  padding: 1.5px; background: linear-gradient(135deg, transparent, transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; transition: all .4s;
+}
+.path-card.buy:hover::before { background: linear-gradient(135deg, var(--green-neon), transparent); }
+.path-card.biz:hover::before { background: linear-gradient(135deg, var(--p), transparent); }
 
-/* RESPONSIVE */
+.path-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  background: rgba(30, 15, 50, 0.85);
+}
+.path-card.buy:hover { box-shadow: 0 15px 40px rgba(16, 185, 129, 0.15); }
+.path-card.biz:hover { box-shadow: 0 15px 40px rgba(139, 92, 246, 0.25); }
+
+.path-header { display: flex; justify-content: space-between; align-items: center; }
+.path-icon { font-size: 2rem; filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); }
+.path-tag {
+  font-family: 'Orbitron', sans-serif; font-size: .65rem; font-weight: 700;
+  padding: 4px 12px; border-radius: 3px; letter-spacing: 1.5px;
+}
+.path-card.buy .path-tag { background: rgba(16, 185, 129, 0.15); color: var(--green-neon); border: 1px solid rgba(16, 185, 129, 0.3); }
+.path-card.biz .path-tag { background: rgba(139, 92, 246, 0.15); color: var(--p); border: 1px solid rgba(139, 92, 246, 0.3); }
+
+.path-title { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 700; color: #fff; }
+.path-desc { font-size: .9rem; color: var(--text-muted); line-height: 1.6; }
+.path-hl {
+  font-size: .85rem; font-weight: 600; padding: 12px; border-radius: 6px;
+  background: rgba(255,255,255,0.03); border-left: 3px solid transparent;
+}
+.path-card.buy .path-hl { border-left-color: var(--green-neon); color: #fff; }
+.path-card.biz .path-hl { border-left-color: var(--gold); color: #fff; }
+
+.path-cta { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; font-family: 'Orbitron', sans-serif; font-size: .8rem; font-weight: 700; letter-spacing: 1px;}
+.path-card.buy .path-cta { color: var(--green-neon); }
+.path-card.biz .path-cta { color: var(--p); }
+
+/* SECCIÓN MATRIZ DE BENEFICIOS */
+.benefits-wrap { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.col-label { font-family: 'Orbitron', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: 3px; margin-bottom: 16px; text-transform: uppercase; }
+.col-label.green { color: var(--green-neon); }
+.col-label.gold { color: var(--gold); }
+.col-title { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 32px; }
+
+.blist { display: flex; flex-direction: column; gap: 20px; }
+.bitem {
+  display: flex; gap: 20px; background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 24px;
+  transition: all .3s;
+}
+.bitem:hover { background: rgba(139, 92, 246, 0.05); border-color: rgba(139, 92, 246, 0.3); transform: translateX(5px); }
+.bitem-icon { font-size: 1.6rem; }
+.bitem-title { font-family: 'Orbitron', sans-serif; font-size: .95rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.bitem-desc { font-size: .85rem; color: var(--text-muted); line-height: 1.6; }
+
+/* FLUJO DE OPERACIONES (PASOS) */
+.how-section { background: #0c0620; border-top: 1px solid rgba(139, 92, 246, 0.15); border-bottom: 1px solid rgba(139, 92, 246, 0.15); padding: 100px 48px; }
+.how-inner { max-width: 1100px; margin: 0 auto; }
+.sec-center { text-align: center; margin-bottom: 60px; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.step {
+  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px; padding: 32px 24px; text-align: center; position: relative;
+}
+.step-num {
+  width: 45px; height: 45px; border-radius: 50%; background: #070214;
+  border: 2px solid var(--p); color: #fff; font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px; box-shadow: 0 0 15px var(--p-glow);
+}
+.step-title { font-family: 'Orbitron', sans-serif; font-size: .9rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.step-text { font-size: .8rem; color: var(--text-muted); line-height: 1.6; }
+
+/* TESTIMONIOS (CÁPSULAS HOLOGRÁFICAS) */
+.test-section { padding: 100px 48px; }
+.test-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+.test-card {
+  background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 20px;
+}
+.stars { color: var(--gold); letter-spacing: 3px; font-size: .8rem; }
+.test-text { font-size: .95rem; line-height: 1.7; color: var(--text-main); font-style: italic; }
+.author-avatar {
+  width: 45px; height: 45px; border-radius: 6px; background: rgba(139, 92, 246, 0.2);
+  border: 1px solid var(--p); color: #fff; font-family: 'Orbitron', sans-serif;
+  display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: .9rem;
+}
+
+/* PERFIL DE MARCA PERSONAL LÁSER */
+.profile-section { padding: 100px 48px; background: rgba(10, 5, 25, 0.5); }
+.profile-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: 64px; align-items: center; }
+.profile-photo-wrap {
+  width: 240px; height: 240px; border-radius: 20px;
+  background: linear-gradient(135deg, var(--p), var(--gold)); padding: 2px;
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+}
+.profile-frame {
+  width: 100%; height: 100%; border-radius: 18px; background: #070214;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: #fff; font-weight: 900;
+}
+.profile-name { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; color: #fff; }
+.profile-role { font-family: 'Orbitron', sans-serif; font-size: .85rem; color: var(--p); letter-spacing: 2px; font-weight: 700; margin: 8px 0 24px; text-transform: uppercase;}
+.profile-bio { color: var(--text-muted); line-height: 1.8; font-size: 1rem; }
+
+/* TERMINAL DE CONVERSIÓN (FORMULARIO) */
+.cta-section { padding: 100px 48px; }
+.cta-inner { max-width: 650px; margin: 0 auto; }
+.intent-sel { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 32px; }
+.intent-btn {
+  padding: 16px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.02); cursor: pointer; font-family: 'Orbitron', sans-serif;
+  font-size: .8rem; font-weight: 700; color: var(--text-muted); transition: all .3s;
+  letter-spacing: 1px;
+}
+.intent-btn.active {
+  border-color: var(--p); background: rgba(139, 92, 246, 0.15); color: #fff;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.25);
+}
+.form-box {
+  background: var(--card-bg); backdrop-filter: blur(16px);
+  border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 16px; padding: 40px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+.form-group { margin-bottom: 24px; }
+.form-label { font-family: 'Orbitron', sans-serif; font-size: .75rem; font-weight: 700; color: #fff; letter-spacing: 1px; display: block; margin-bottom: 8px; }
+.form-input {
+  width: 100%; padding: 14px 18px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(7, 2, 20, 0.8); color: #fff; font-family: 'Outfit', sans-serif; font-size: .95rem;
+  outline: none; transition: all .3s;
+}
+.form-input:focus { border-color: var(--p); box-shadow: 0 0 12px var(--p-glow); }
+
+.submit-btn {
+  width: 100%; background: linear-gradient(90deg, var(--p), #6D28D9); color: #fff;
+  padding: 18px; border: none; border-radius: 6px; font-family: 'Orbitron', sans-serif;
+  font-size: .9rem; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all .3s;
+}
+.submit-btn:hover { transform: translateY(-2px); box-shadow: 0 0 25px var(--p-glow); }
+
+footer { background: #05020c; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 40px; font-size: .8rem; color: var(--text-muted); line-height: 1.8; }
+footer strong { color: #fff; }
+
 @media(max-width:860px){
-  nav{padding:12px 20px;}
-  .nav-right{display:none;}
-  .hero{padding:100px 24px 60px;}
-  .paths{grid-template-columns:1fr;}
-  .two-col{grid-template-columns:1fr;gap:40px;}
-  .how-section,.test-section,.cta-section,.profile-section{padding:60px 24px;}
-  .steps{grid-template-columns:repeat(2,1fr);}
-  .steps::before{display:none;}
-  .test-grid{grid-template-columns:1fr;}
-  .profile-inner{grid-template-columns:1fr;text-align:center;justify-items:center;}
-  .intent-sel{grid-template-columns:1fr;}
+  nav { padding: 15px 24px; }
+  .nav-right { display: none; }
+  .hero { padding: 120px 24px 60px; }
+  .paths, .two-col, .steps, .test-grid, .profile-inner, .intent-sel { grid-template-columns: 1fr; }
+  .steps { gap: 16px; }
 }
 </style>
 </head>
@@ -161,90 +261,118 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 
 <!-- NAV -->
 <nav>
-  <div class="logo">MIRIAN <em>RAMÍREZ</em><span>| Salud &amp; Bienestar</span></div>
+  <div class="logo">MIRIAN <em>RAMÍREZ</em><span>// SYSTEM</span></div>
   <div class="nav-right">
-    <a href="#productos" class="nav-pill outline">Quiero productos</a>
-    <a href="#negocio" class="nav-pill filled">Quiero negocio</a>
+    <a href="#productos" class="nav-pill outline">BIO-PRODUCTOS</a>
+    <a href="#negocio" class="nav-pill filled">BUSINESS HUB</a>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO GLOBAL -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-eyebrow"><span class="hero-dot"></span>Disponible en todo el mundo · 35 años transformando vidas</div>
-  <h1>Productos que <span class="ul-gold">transforman</span><br>una <span class="accent">oportunidad</span> que cambia vidas</h1>
-  <p class="hero-sub">Tanto si quieres cuidarte con los mejores suplementos de nutrición y belleza <strong>a precio especial</strong>, como si buscas construir un negocio propio — aquí está tu puerta de entrada.</p>
+  <div class="hero-eyebrow"><span class="hero-dot"></span>GLOBAL NETWORK // READY TO CONNECT</div>
+  <h1>Sistemas de Salud <span class="ul-gold">Premium</span><br>&amp; Modelos de Negocio <span class="accent">Escalables</span></h1>
+  <p class="hero-sub">Optimiza tu rendimiento biológico con suplementación científica o activa una franquicia digital independiente con distribución en más de 20 países.</p>
   
   <div class="paths">
     <a href="#formulario" class="path-card buy" onclick="selectIntent('consumidor')">
-      <div><div class="path-icon">🛒</div><div class="path-tag">Consumidor</div></div>
-      <div class="path-title">Afíliate y compra<br>con descuento</div>
-      <p class="path-desc">Accede a más de 200 productos de nutrición, energía y belleza desde el primer día. Sin mínimos de compra.</p>
-      <div class="path-hl">✅ Desde 25% de descuento inmediato</div>
-      <div class="path-cta"><span class="path-cta-text">Quiero mi descuento</span><span class="path-arrow">→</span></div>
+      <div class="path-header">
+        <div class="path-icon">🧬</div>
+        <div class="path-tag">CONSUMIDOR INTELEGENTE</div>
+      </div>
+      <div class="path-title">Acceso con -25% Directo</div>
+      <p class="path-desc">Consumo inteligente y libre de suplementación cuántica y celular. Sin compras forzadas ni intermediarios.</p>
+      <div class="path-hl">Matriz inteligente: Descuento escalable hasta el 40%</div>
+      <div class="path-cta"><span>DESBLOQUEAR DESCUENTO</span><span>→</span></div>
     </a>
+    
     <a href="#formulario" class="path-card biz" onclick="selectIntent('negocio')">
-      <div><div class="path-icon">🚀</div><div class="path-tag">Distribuidor</div></div>
-      <div class="path-title">Construye tu<br>negocio propio</div>
-      <p class="path-desc">Genera ingresos extra distribuyendo productos de salud y bienestar de alta demanda global.</p>
-      <div class="path-hl">⭐ Ingresos + viajes + crecimiento ilimitado</div>
-      <div class="path-cta"><span class="path-cta-text">Quiero el negocio</span><span class="path-arrow">→</span></div>
+      <div class="path-header">
+        <div class="path-icon">⚡</div>
+        <div class="path-tag">DISTRIBUIDOR GLOBAL</div>
+      </div>
+      <div class="path-title">Ecosistema Financiero</div>
+      <p class="path-desc">Despliega un canal de distribución internacional desde tu smartphone. Monetiza la industria del bienestar.</p>
+      <div class="path-hl">Incentivos: Bonos de aceleración + Viajes anuales</div>
+      <div class="path-cta"><span>INICIAR SISTEMA</span><span>→</span></div>
     </a>
   </div>
-  <p class="paths-note">En ambos casos te contacto personalmente · Sin compromiso · Respondo en menos de 24h</p>
 </section>
 
 <!-- BENEFICIOS -->
 <div class="benefits-wrap">
   <div class="two-col">
     <div id="productos">
-      <div class="col-label green">Para ti · Consumidor</div>
-      <h2 class="col-title">Cuídate con los mejores productos pagando el precio justo</h2>
+      <div class="col-label green">// PROTOCOLO BIOLÓGICO</div>
+      <h2 class="col-title">Bio-Suplementación Avanzada</h2>
       <div class="blist">
-        <div class="bitem"><div class="bitem-icon">💊</div><div><div class="bitem-title">+200 productos de calidad mundial</div><div class="bitem-desc">Nutrición, energía, digestión y belleza respaldados por ciencia.</div></div></div>
-        <div class="bitem"><div class="bitem-icon">🏷️</div><div><div class="bitem-title">25% de descuento inmediato</div><div class="bitem-desc">Al afiliarte accedes directamente al precio de distribuidor.</div></div></div>
-        <div class="bitem"><div class="bitem-icon">📦</div><div><div class="bitem-title">Sin mínimos ni presión</div><div class="bitem-desc">Compras lo que quieres, cuando quieres. Sin cuotas obligatorias.</div></div></div>
+        <div class="bitem">
+          <div class="bitem-icon">🔮</div>
+          <div>
+            <div class="bitem-title">Tecnología de Absorción Celular</div>
+            <div class="bitem-desc">Nutrientes diseñados para una biodisponibilidad del 99% a nivel celular de forma inmediata.</div>
+          </div>
+        </div>
+        <div class="bitem">
+          <div class="bitem-icon">⚙️</div>
+          <div>
+            <div class="bitem-title">Cero Obligaciones de Stock</div>
+            <div class="bitem-desc">Tú controlas el flujo. Adquiere lo que necesites, cuando tu cuerpo lo requiera.</div>
+          </div>
+        </div>
       </div>
-      <div class="disc-badge">🏷️ Empieza hoy con 25% OFF</div>
     </div>
     
     <div id="negocio">
-      <div class="col-label gold">Para ti · Distribuidor</div>
-      <h2 class="col-title">Un negocio flexible con ingresos reales desde el primer mes</h2>
+      <div class="col-label gold">// INFRAESTRUCTURA DIGITAL</div>
+      <h2 class="col-title">Escalabilidad Cuántica</h2>
       <div class="blist">
-        <div class="bitem"><div class="bitem-icon">💼</div><div><div class="bitem-title">Tu propio negocio y tiempo</div><div class="bitem-desc">Trabaja desde casa, en tus ratos libres o a tiempo completo.</div></div></div>
-        <div class="bitem"><div class="bitem-icon">📈</div><div><div class="bitem-title">Ingresos sin techo</div><div class="bitem-desc">Ganas por tus ventas directas y por el equipo que construyes.</div></div></div>
-        <div class="bitem"><div class="bitem-icon">🎯</div><div><div class="bitem-title">Mentoría 1 a 1 conmigo</div><div class="bitem-desc">Te acompaño personalmente en estrategias de venta y liderazgo.</div></div></div>
+        <div class="bitem">
+          <div class="bitem-icon">🎯</div>
+          <div>
+            <div class="bitem-title">Mentoría y Roadmap 1 a 1</div>
+            <div class="bitem-desc">Acceso directo a mis estrategias de adquisición digital, automatización y duplicación de equipos.</div>
+          </div>
+        </div>
+        <div class="bitem">
+          <div class="bitem-icon">💎</div>
+          <div>
+            <div class="bitem-title">Regalías de por vida</div>
+            <div class="bitem-desc">Construye una red activa y genera ingresos residuales recurrentes por consumos globales.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PASOS -->
+<!-- PROCESO LINEAL -->
 <section class="how-section">
   <div class="how-inner">
-    <div class="sec-label gold">El proceso</div>
-    <h2 class="sec-title white">4 pasos para empezar hoy</h2>
+    <div class="sec-center">
+      <div class="col-label gold">// PIPELINE</div>
+      <h2 class="sec-title white">Protocolo de Onboarding</h2>
+    </div>
     <div class="steps">
       <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-title">Elige tu opción</div>
-        <p class="step-text">Selecciona si prefieres consumir con descuento o emprender el negocio.</p>
+        <div class="step-num">01</div>
+        <div class="step-title">Elegir Nodo</div>
+        <p class="step-text">Define tu objetivo: Optimización física o negocio escalable.</p>
       </div>
       <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-title">Llena el formulario</div>
-        <p class="step-text">Completa tus datos básicos para saber en qué país te encuentras.</p>
+        <div class="step-num">02</div>
+        <div class="step-title">Data Entry</div>
+        <p class="step-text">Registra tu geolocalización para validar la disponibilidad logística.</p>
       </div>
       <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-title">Hablamos 1 a 1</div>
-        <p class="step-text">Te contacto por WhatsApp para guiarte en tu proceso de registro oficial.</p>
+        <div class="step-num">03</div>
+        <div class="step-title">Conexión Segura</div>
+        <p class="step-text">Sesión estratégica privada vía WhatsApp para abrir tu código oficial.</p>
       </div>
       <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-title">¡Listo!</div>
-        <p class="step-text">Accedes inmediatamente a tu plataforma de descuentos o herramientas de negocio.</p>
+        <div class="step-num">04</div>
+        <div class="step-title">Despliegue</div>
+        <p class="step-text">Acceso a precios de fábrica o plataforma de entrenamiento digital.</p>
       </div>
     </div>
   </div>
@@ -253,30 +381,27 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 <!-- TESTIMONIOS -->
 <section class="test-section">
   <div class="test-inner">
-    <div class="sec-label amber">Historias reales</div>
-    <h2 class="sec-title dark">Gente que ya transformó su día a día</h2>
+    <div class="col-label gold" style="text-align: center;">// CASOS DE ÉXITO REGISTRADOS</div>
     <div class="test-grid">
       <div class="test-card">
-        <div class="test-type consumer">🛒 Consumidor</div>
         <div class="stars">★★★★★</div>
-        <p class="test-text">"Me afilié solo para comprar los productos más baratos. El descuento se nota muchísimo y mi digestión cambió por completo."</p>
-        <div class="test-author">
-          <div class="author-avatar">M</div>
+        <p class="test-text">"La afiliación me permitió automatizar mi salud. Compro directo con descuento, sin intermediarios y con envíos rápidos."</p>
+        <div style="display: flex; gap: 15px; align-items: center;">
+          <div class="author-avatar">MD</div>
           <div>
-            <div class="author-name">María Delgado</div>
-            <div class="author-city">Guayaquil, Ecuador</div>
+            <div style="font-weight: 700; font-size: .9rem;">Elena Rostova</div>
+            <div style="font-size: .75rem; color: var(--text-muted);">Valencia, España</div>
           </div>
         </div>
       </div>
       <div class="test-card">
-        <div class="test-type distributor">🚀 Distribuidor</div>
         <div class="stars">★★★★★</div>
-        <p class="test-text">"Buscaba un ingreso extra sin descuidar a mis hijos. Con la guía de Mirian logré igualar mi sueldo anterior en 6 meses."</p>
-        <div class="test-author">
-          <div class="author-avatar">Carlos</div>
+        <p class="test-text">"Pasé de empleada tradicional a dirigir una red internacional. El sistema de Mirian elimina toda la curva de aprendizaje."</p>
+        <div style="display: flex; gap: 15px; align-items: center;">
+          <div class="author-avatar">AM</div>
           <div>
-            <div class="author-name">Carlos Mendoza</div>
-            <div class="author-city">Lima, Perú</div>
+            <div style="font-weight: 700; font-size: .9rem;">Alan Medina</div>
+            <div style="font-size: .75rem; color: var(--text-muted);">Bogotà, Colombia</div>
           </div>
         </div>
       </div>
@@ -284,48 +409,45 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
   </div>
 </section>
 
-<!-- PERFIL MIRIAN -->
+<!-- PERFIL -->
 <section class="profile-section">
   <div class="profile-inner">
     <div class="profile-photo-wrap">
       <div class="profile-frame">MR</div>
     </div>
     <div>
-      <div class="profile-eyebrow">Tu Mentora</div>
+      <div class="profile-eyebrow">// LEAD ARCHITECT</div>
       <h2 class="profile-name">Mirian Ramírez</h2>
-      <div class="profile-role">Líder Internacional en Salud y Emprendimiento</div>
-      <p class="profile-bio">Llevo años ayudando a personas de todo el mundo a recuperar su bienestar físico y a construir negocios independientes y rentables desde casa. Mi meta es darte el mapa exacto para que logres tus objetivos sin perder tiempo.</p>
+      <div class="profile-role">Especialista en Bio-Hacking &amp; Expansión de Redes Globales</div>
+      <p class="profile-bio">Con más de tres décadas analizando mercados de bienestar, mi función es reestructurar tu salud física y darte la infraestructura digital llave en mano para que logres la independencia financiera en la nueva economía.</p>
     </div>
   </div>
 </section>
 
-<!-- FORMULARIO DE CONVERSIÓN -->
+<!-- TERMINAL DE REGISTRO -->
 <section id="formulario" class="cta-section">
   <div class="cta-inner">
-    <h2 class="sec-title dark" id="form-title">¿Cómo te gustaría iniciar hoy?</h2>
-    <p class="sec-sub gray" id="form-subtitle">Selecciona una opción para darte la atención personalizada que necesitas.</p>
-    
     <div class="intent-sel">
-      <button class="intent-btn active" id="btn-consumidor" onclick="selectIntent('consumidor')">🛒 Quiero comprar con descuento</button>
-      <button class="intent-btn" id="btn-negocio" onclick="selectIntent('negocio')">🚀 Quiero iniciar mi negocio</button>
+      <button class="intent-btn active" id="btn-consumidor" onclick="selectIntent('consumidor')">[ 🛒 MODO CONSUMIDOR ]</button>
+      <button class="intent-btn" id="btn-negocio" onclick="selectIntent('negocio')">[ 🚀 MODO PARTNER ]</button>
     </div>
     
     <div class="form-box">
       <form action="#" method="POST">
         <div class="form-group">
-          <label class="form-label">Nombre Completo</label>
-          <input type="text" class="form-input" placeholder="Ej. Juan Pérez" required>
+          <label class="form-label">USUARIO / NOMBRE COMPLETO</label>
+          <input type="text" class="form-input" placeholder="Ej. Alex Turner" required>
         </div>
         <div class="form-group">
-          <label class="form-label">Número de WhatsApp (con código de país)</label>
-          <input type="tel" class="form-input" placeholder="Ej. +593 999999999" required>
+          <label class="form-label">CANAL DE ENLACE / WHATSAPP</label>
+          <input type="tel" class="form-input" placeholder="Ej. +34 600 000 000" required>
         </div>
         <div class="form-group">
-          <label class="form-label">País de residencia</label>
-          <input type="text" class="form-input" placeholder="Ej. Ecuador" required>
+          <label class="form-label">NODO DE OPERACIÓN / PAÍS</label>
+          <input type="text" class="form-input" placeholder="Ej. México" required>
         </div>
         <button type="submit" class="submit-btn">
-          <span id="submit-text">Solicitar mi Descuento de Afiliado</span> →
+          <span id="submit-text">INICIALIZAR DESCUENTO DEL 25%</span>
         </button>
       </form>
     </div>
@@ -333,29 +455,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 </section>
 
 <footer>
-  <p>&copy; 2026 Mirian Ramírez. Todos los derechos reservados. <br><strong>Distribuidor Independiente.</strong> Esta página no pertenece directamente a la corporación matriz.</p>
+  <p>&copy; 2026 Mirian Ramírez // DISTRIBUIDOR INDEPENDIENTE.<br>Cifrado y optimizado para distribución global. Esta landing page no representa la interfaz directa corporativa.</p>
 </footer>
 
 <script>
 function selectIntent(type) {
-  // Remover clases activas de los botones del formulario
   document.getElementById('btn-consumidor').classList.remove('active');
   document.getElementById('btn-negocio').classList.remove('active');
-  
-  const title = document.getElementById('form-title');
-  const subtitle = document.getElementById('form-subtitle');
   const submitText = document.getElementById('submit-text');
   
   if(type === 'consumidor') {
     document.getElementById('btn-consumidor').classList.add('active');
-    title.innerText = "¡Excelente! Vamos por tu descuento";
-    subtitle.innerText = "Déjame tus datos y te ayudaré a tramitar tu código de afiliado para comprar con el 25% OFF inmediatamente.";
-    submitText.innerText = "Solicitar mi Descuento de Afiliado";
+    submitText.innerText = "INICIALIZAR DESCUENTO DEL 25%";
   } else {
-    document.getElementById('btn-negocio').classList.add('add', 'active');
-    title.innerText = "Estás a un paso de emprender tu negocio";
-    subtitle.innerText = "Completa el formulario para agendar una llamada breve y explicarte cómo funciona el sistema de ganancias y mentorías.";
-    submitText.innerText = "Quiero aplicar a la Mentoría de Negocio";
+    document.getElementById('btn-negocio').classList.add('active');
+    submitText.innerText = "SINCRONIZAR CON MENTORÍA DE NEGOCIO";
   }
 }
 </script>
