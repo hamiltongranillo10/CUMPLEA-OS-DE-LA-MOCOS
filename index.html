@@ -166,15 +166,30 @@ nav {
 /* SOBRE MIRIAN */
 .about-section { padding: 90px 48px; max-width: 1100px; margin: 0 auto; }
 .about-grid { display:grid; grid-template-columns: 340px 1fr; gap: 56px; align-items:center; }
-.about-photo-frame { position:relative; border-radius: 16px; overflow:hidden; border: 1px solid var(--line); background: var(--bg-soft); aspect-ratio: 4/5; display:flex; align-items:center; justify-content:center; }
-.about-photo-frame img { width:100%; height:100%; object-fit:cover; display:block; }
-.about-photo-frame .placeholder { text-align:center; color: var(--muted); padding: 24px; font-size:.85rem; line-height:1.6; }
-.about-photo-frame .placeholder svg { width:40px; height:40px; margin-bottom:12px; color: var(--citrus); }
+.about-photo-frame { 
+  position:relative; 
+  border-radius: 16px; 
+  overflow:hidden; 
+  border: 1px solid var(--line); 
+  background: var(--bg-soft); 
+  aspect-ratio: 3/4; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+.about-photo-frame img { 
+  width:100%; 
+  height:100%; 
+  object-fit: cover; 
+  object-position: center 15%; /* Centra la visualización en su rostro */
+  display:block; 
+}
 .about-ribbon { position:absolute; top:16px; left:16px; background: var(--citrus); color:#fff; font-family:'Space Mono',monospace; font-size:.62rem; text-transform:uppercase; letter-spacing:.06em; padding:6px 12px; border-radius: 4px; font-weight:700; z-index:1; }
 .about-text h2 { margin-bottom:18px; }
 .about-text p { color: var(--muted); line-height:1.75; font-size:1rem; margin-bottom:16px; max-width: 56ch; }
 .about-text .about-quote { font-family:'Fraunces',serif; font-style:italic; color: var(--ink); font-size:1.15rem; border-left: 3px solid var(--citrus); padding-left:18px; margin-top:22px; }
-@media(max-width:960px){ .about-grid { grid-template-columns: 1fr; } .about-photo-frame { max-width: 320px; margin: 0 auto; } }
+@media(max-width:960px){ .about-grid { grid-template-columns: 1fr; } .about-photo-frame { max-width: 340px; margin: 0 auto; } }
 
 /* CATEGORÍAS DE PRODUCTO */
 .cat-section { padding: 90px 48px; max-width: 1200px; margin: 0 auto; }
@@ -354,10 +369,7 @@ footer { background: #0E0719; border-top: 1px solid var(--line); text-align: cen
   <div class="about-grid">
     <div class="about-photo-frame">
       <div class="about-ribbon">Empresaria Omnilife</div>
-      <div class="placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg>
-        Aquí va la foto de Mirian
-      </div>
+      <img src="mirian-ramirez.jpg" alt="Mirian Ramírez - Empresaria Independiente Omnilife">
     </div>
     <div class="about-text">
       <div class="sub">// Quién te acompaña</div>
@@ -460,7 +472,7 @@ footer { background: #0E0719; border-top: 1px solid var(--line); text-align: cen
   </details>
   <details class="faq-item">
     <summary>¿Qué diferencia hay entre consumir y distribuir estando afiliado? <span class="plus">+</span></summary>
-    <p>Ninguna en cuanto a requisitos de compra: la afiliación te da el mismo derecho al descuento. La diferencia radica en tu elección personal; puedes usar el código exclusivamente para ahorrar en tu nutrición familiar, o aprovecharlo para comercializar y construir redes de distribución con nuestra asesoría.</p>
+    <p>Ninguna en cuanto a requisitos de compra: la afliación te da el mismo derecho al descuento. La diferencia radica en tu elección personal; puedes usar el código exclusivamente para ahorrar en tu nutrición familiar, o aprovecharlo para comercializar y construir redes de distribución con nuestra asesoría.</p>
   </details>
   <details class="faq-item">
     <summary>¿Por qué validar el nombre de Mirian Ramírez como patrocinadora? <span class="plus">+</span></summary>
@@ -520,7 +532,6 @@ footer { background: #0E0719; border-top: 1px solid var(--line); text-align: cen
 </a>
 
 <script>
-// El número oficial guardado de manera limpia
 const WHATSAPP_PHONE = "593990141288"; 
 
 let currentMode = 'consumo';
