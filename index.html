@@ -76,7 +76,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 48px; background: rgba(14, 31, 23, 0.85);
+  padding: 18px 48px; background: rgba(27, 14, 46, 0.85);
   backdrop-filter: blur(18px); border-bottom: 1px solid var(--line);
   transition: background .3s ease;
 }
@@ -188,6 +188,7 @@ nav {
 .cat-icon.c4 { background: rgba(124,197,118,0.14); color: var(--leaf); }
 .cat-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; font-family:'Inter',sans-serif; }
 .cat-card p { font-size: .87rem; color: var(--muted); line-height: 1.6; }
+.cat-disclaimer { text-align:center; max-width: 640px; margin: 40px auto 0; font-size: .8rem; color: var(--muted); line-height: 1.6; }
 
 /* TUTORIAL */
 .tutorial-section { background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 100px 48px; position: relative; }
@@ -372,32 +373,33 @@ footer { background: #0E0719; border-top: 1px solid var(--line); text-align: cen
 
 <section id="categorias" class="cat-section reveal">
   <div class="section-header">
-    <div class="sub">// Líneas que acompaño</div>
-    <h2>Una gama pensada para el día a día</h2>
-    <p class="lead">Cuatro frentes principales según lo que estés buscando resolver primero.</p>
+    <div class="sub">// Cómo te oriento</div>
+    <h2>Primero conversamos, después te recomiendo</h2>
+    <p class="lead">No es un catálogo para elegir por tu cuenta: te escucho, entiendo qué estás buscando resolver, y desde ahí te oriento hacia las opciones que tienen más sentido para ti.</p>
   </div>
   <div class="cat-grid">
     <div class="cat-card">
       <div class="cat-icon c1"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c-4-2-7-6-7-11a7 7 0 0 1 14 0c0 5-3 9-7 11z"/><path d="M12 10v6"/></svg></div>
       <h4>Nutrición diaria</h4>
-      <p>Fórmulas balanceadas pensadas para complementar tu alimentación de todos los días.</p>
+      <p>Si buscas complementar tu alimentación del día a día, conversamos sobre tus hábitos antes de orientarte hacia alguna opción.</p>
     </div>
     <div class="cat-card">
       <div class="cat-icon c2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
       <h4>Control de peso</h4>
-      <p>Apoyo nutricional para acompañar tus propios objetivos de composición corporal.</p>
+      <p>Si tu objetivo tiene que ver con tu composición corporal, revisamos juntos qué se ajusta mejor a tu rutina y tus metas.</p>
     </div>
     <div class="cat-card">
       <div class="cat-icon c3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></div>
       <h4>Energía y rendimiento</h4>
-      <p>Opciones pensadas para jornadas largas, entrenamiento o actividad física constante.</p>
+      <p>Si necesitas más energía para tus jornadas o entrenamientos, te oriento según tu nivel de actividad y rutina.</p>
     </div>
     <div class="cat-card">
       <div class="cat-icon c4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c2.5 3 5 6.2 5 9.5a5 5 0 0 1-10 0C7 9.2 9.5 6 12 3z"/></svg></div>
       <h4>Cuidado personal</h4>
-      <p>Línea de bienestar e higiene diaria con tecnología micelizada.</p>
+      <p>Si te interesa el cuidado diario con tecnología micelizada, conversamos sobre qué buscas y te muestro las alternativas.</p>
     </div>
   </div>
+  <p class="cat-disclaimer">Los productos Omnilife son complementos alimenticios: no diagnostican, tratan ni curan enfermedades. Esta orientación es personalizada, pero no sustituye una consulta médica profesional.</p>
 </section>
 
 <section class="omni-portal-section reveal">
@@ -481,7 +483,7 @@ footer { background: #0E0719; border-top: 1px solid var(--line); text-align: cen
   <div class="section-header">
     <div class="sub">// Atención independiente</div>
     <h2>¿Necesitas asesoría en tu registro?</h2>
-    <p class="lead">Si tienes dudas sobre los kits o el llenado de datos, ingresa tus datos de contacto para guiarte de forma personalizada mediante WhatsApp.</p>
+    <p class="lead">Cuéntame quién eres y desde dónde escribes. Al enviar el formulario se abre un chat directo por WhatsApp para guiarte de forma personalizada.</p>
   </div>
 
   <div class="toggle-container">
@@ -490,18 +492,18 @@ footer { background: #0E0719; border-top: 1px solid var(--line); text-align: cen
   </div>
 
   <div class="main-form-box">
-    <form action="#" method="POST">
+    <form id="lead-form" method="POST">
       <div class="form-group">
-        <label class="form-label">Nombre completo</label>
-        <input type="text" class="form-input" placeholder="Ej. Carlos Mendoza" required>
+        <label class="form-label" for="lead-nombre">Nombre completo</label>
+        <input id="lead-nombre" type="text" class="form-input" placeholder="Ej. Carlos Mendoza" required>
       </div>
       <div class="form-group">
-        <label class="form-label">WhatsApp (incluir código de país)</label>
-        <input type="tel" class="form-input" placeholder="Ej. +593 99 123 4567" required>
+        <label class="form-label" for="lead-pais">País</label>
+        <input id="lead-pais" type="text" class="form-input" placeholder="Ej. Ecuador" required>
       </div>
       <div class="form-group">
-        <label class="form-label">País de residencia</label>
-        <input type="text" class="form-input" placeholder="Ej. Ecuador" required>
+        <label class="form-label" for="lead-ciudad">Ciudad</label>
+        <input id="lead-ciudad" type="text" class="form-input" placeholder="Ej. Guayaquil" required>
       </div>
 
       <button type="submit" class="action-btn">
@@ -544,10 +546,27 @@ function setMode(mode) {
 window.addEventListener('scroll', () => {
   const nav = document.querySelector('nav');
   if (window.scrollY > 50) {
-    nav.style.background = 'rgba(14, 31, 23, 0.97)';
+    nav.style.background = 'rgba(27, 14, 46, 0.97)';
   } else {
-    nav.style.background = 'rgba(14, 31, 23, 0.85)';
+    nav.style.background = 'rgba(27, 14, 46, 0.85)';
   }
+});
+
+// ⚠️ Usa el mismo número real de Mirian que pongas en el botón flotante de WhatsApp
+const WHATSAPP_NUMBER = '593990000000';
+
+document.getElementById('lead-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const nombre = document.getElementById('lead-nombre').value.trim();
+  const pais = document.getElementById('lead-pais').value.trim();
+  const ciudad = document.getElementById('lead-ciudad').value.trim();
+  const modo = document.getElementById('btn-cons').classList.contains('active')
+    ? 'el consumo con 25% de descuento'
+    : 'la distribución independiente';
+
+  const mensaje = `Hola Mirian, soy ${nombre}, de ${ciudad}, ${pais}. Me interesa información sobre ${modo}.`;
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank');
 });
 
 // Revelado progresivo al hacer scroll
