@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mirian Ramírez | Quantum Health & Business Hub</title>
+<title>Mirian Ramírez | Empresaria Independiente Omnilife</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --p: #8B5CF6;       /* Morado Neón */
-  --p-glow: rgba(139, 92, 246, 0.4);
-  --gold: #F5CC5A;    /* Oro Líquido */
-  --gold-glow: rgba(245, 204, 90, 0.3);
-  --dark-bg: #070214; /* Espacio Profundo */
-  --card-bg: rgba(20, 10, 35, 0.65);
-  --text-main: #E2E8F0;
+  --omni-purple: #7C3AED;  
+  --purple-glow: rgba(124, 58, 237, 0.3);
+  --gold: #F5CC5A;         
+  --gold-glow: rgba(245, 204, 90, 0.2);
+  --dark-bg: #090416;      
+  --card-bg: rgba(22, 14, 38, 0.7);
+  --text-main: #F1F5F9;
   --text-muted: #94A3B8;
   --green-neon: #10B981;
 }
@@ -25,451 +25,246 @@ body {
   background-color: var(--dark-bg); 
   color: var(--text-main); 
   overflow-x: hidden;
-  position: relative;
 }
 
-/* FONDO ANIMADO CUÁNTICO */
 body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
+  content: ''; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
   background: 
-    radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 85% 75%, rgba(245, 204, 90, 0.08) 0%, transparent 45%);
+    radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(245, 204, 90, 0.06) 0%, transparent 45%);
   z-index: -1;
 }
 
-/* NAVEGACIÓN FUTURISTA */
+/* NAVBAR */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 48px;
-  background: rgba(7, 2, 20, 0.75);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  padding: 20px 48px; background: rgba(9, 4, 22, 0.85);
+  backdrop-filter: blur(16px); border-bottom: 1px solid rgba(124, 58, 237, 0.15);
 }
-.logo { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: 2px; color: #fff; }
-.logo em { color: var(--gold); font-style: normal; text-shadow: 0 0 10px var(--gold-glow); }
-.logo span { font-family: 'Outfit'; font-size: .7rem; color: var(--text-muted); letter-spacing: 1px; margin-left: 8px; }
+.logo { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 2px; }
+.logo em { color: var(--gold); font-style: normal; }
+.logo span { font-family: 'Outfit'; font-size: .65rem; color: #fff; background: var(--omni-purple); padding: 2px 6px; border-radius: 3px; margin-left: 8px; font-weight: bold; }
 
-.nav-right { display: flex; gap: 15px; }
-.nav-pill {
-  padding: 10px 24px; border-radius: 4px; font-family: 'Orbitron', sans-serif;
-  font-size: .75rem; font-weight: 600; letter-spacing: 1px; cursor: pointer;
-  text-decoration: none; transition: all .3s cubic-bezier(0.2, 0.8, 0.2, 1);
-  position: relative; overflow: hidden;
+.nav-links { display: flex; gap: 20px; }
+.nav-btn {
+  padding: 10px 20px; border-radius: 6px; font-family: 'Orbitron', sans-serif; font-size: .75rem;
+  font-weight: 700; text-decoration: none; transition: all .3s;
 }
-.nav-pill.outline {
-  border: 1px solid var(--p); color: var(--p);
-  box-shadow: inset 0 0 8px rgba(139, 92, 246, 0.1);
-}
-.nav-pill.outline:hover { background: var(--p); color: #fff; box-shadow: 0 0 15px var(--p-glow); }
-.nav-pill.filled { background: linear-gradient(90deg, var(--p), #6D28D9); color: #fff; border: 1px solid transparent;}
-.nav-pill.filled:hover { transform: translateY(-2px); box-shadow: 0 0 20px var(--p-glow); }
+.nav-btn.secondary { border: 1px solid var(--omni-purple); color: var(--text-main); }
+.nav-btn.primary { background: linear-gradient(90deg, var(--omni-purple), #5B21B6); color: #fff; }
+.nav-btn:hover { transform: translateY(-2px); box-shadow: 0 0 15px var(--purple-glow); }
 
-/* HERO INTERACTIVO */
-.hero { min-height: 100vh; padding: 150px 48px 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(139, 92, 246, 0.1); border: 1px solid var(--p);
-  color: #fff; padding: 8px 20px; border-radius: 4px; font-family: 'Orbitron', sans-serif;
-  font-size: .75rem; letter-spacing: 2px; margin-bottom: 32px;
-  box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
-}
-.hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-neon); box-shadow: 0 0 10px var(--green-neon); }
+/* HERO SECTOR */
+.hero { min-height: 90vh; padding: 160px 48px 80px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 450px; gap: 60px; align-items: center; }
+.hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(124, 58, 237, 0.15); border: 1px solid var(--omni-purple); padding: 6px 16px; border-radius: 4px; font-family: 'Orbitron', sans-serif; font-size: .7rem; letter-spacing: 2px; margin-bottom: 24px; color: var(--gold); }
+.hero-tag span { width: 6px; height: 6px; background: var(--green-neon); border-radius: 50%; box-shadow: 0 0 8px var(--green-neon); }
 
-.hero h1 {
-  font-family: 'Orbitron', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900;
-  line-height: 1.1; letter-spacing: -1px; margin-bottom: 24px; color: #fff;
-}
-.hero h1 .accent {
-  color: transparent; -webkit-background-clip: text;
-  background-image: linear-gradient(90deg, var(--p), #C084FC);
-  filter: drop-shadow(0 0 15px var(--p-glow));
-}
-.hero h1 .ul-gold {
-  color: transparent; -webkit-background-clip: text;
-  background-image: linear-gradient(90deg, var(--gold), #FFE4A0);
-  filter: drop-shadow(0 0 15px var(--gold-glow));
-}
-.hero-sub { font-size: 1.15rem; color: var(--text-muted); max-width: 640px; line-height: 1.8; margin: 0 auto 56px; }
+.hero h1 { font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; line-height: 1.2; color: #fff; margin-bottom: 20px; }
+.hero h1 span.gradient { color: transparent; -webkit-background-clip: text; background-image: linear-gradient(90deg, var(--omni-purple), #A78BFA); filter: drop-shadow(0 0 10px var(--purple-glow)); }
+.hero h1 span.gold { color: transparent; -webkit-background-clip: text; background-image: linear-gradient(90deg, var(--gold), #FFE17D); }
+.hero-p { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 40px; }
 
-/* PLATAFORMAS / PATHS MULTIVERSO */
-.paths { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 900px; width: 100%; margin: 0 auto; }
-.path-card {
-  background: var(--card-bg); backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px;
-  padding: 40px 32px; text-align: left; text-decoration: none;
-  display: flex; flex-direction: column; gap: 20px;
-  transition: all .4s cubic-bezier(0.16, 1, 0.3, 1); position: relative;
-}
-.path-card::before {
-  content: ''; position: absolute; inset: 0; border-radius: 12px;
-  padding: 1.5px; background: linear-gradient(135deg, transparent, transparent);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; transition: all .4s;
-}
-.path-card.buy:hover::before { background: linear-gradient(135deg, var(--green-neon), transparent); }
-.path-card.biz:hover::before { background: linear-gradient(135deg, var(--p), transparent); }
+/* Tarjeta de Confianza de Mirian */
+.mirian-card { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); text-align: center; position: relative; }
+.mirian-card::before { content: 'DISTRIBUIDOR INDEPENDIENTE'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, var(--omni-purple), #5B21B6); color: #fff; font-family: 'Orbitron', sans-serif; font-size: .6rem; font-weight: 900; padding: 5px 14px; border-radius: 3px; letter-spacing: 1px; }
+.avatar-frame { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, var(--omni-purple), var(--gold)); padding: 3px; margin: 15px auto 20px; box-shadow: 0 0 25px var(--purple-glow); }
+.avatar-internal { width: 100%; height: 100%; border-radius: 50%; background: #130B24; display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900; color: #fff; }
+.mirian-card h3 { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.mirian-card .badge { font-size: .75rem; color: var(--gold); font-weight: 600; letter-spacing: 1px; margin-bottom: 16px; text-transform: uppercase; }
+.mirian-card p { font-size: .9rem; color: var(--text-muted); line-height: 1.6; text-align: left; }
 
-.path-card:hover {
-  transform: translateY(-8px) scale(1.01);
-  background: rgba(30, 15, 50, 0.85);
-}
-.path-card.buy:hover { box-shadow: 0 15px 40px rgba(16, 185, 129, 0.15); }
-.path-card.biz:hover { box-shadow: 0 15px 40px rgba(139, 92, 246, 0.25); }
+/* SECCIÓN: ENLACE WEB OFICIAL DE OMNILIFE */
+.omni-portal-section { padding: 40px 48px; max-width: 1200px; margin: 0 auto 40px; }
+.portal-box { background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(22, 14, 38, 0.9)); border: 1px solid rgba(124, 58, 237, 0.3); border-radius: 16px; padding: 40px; text-align: center; box-shadow: 0 0 30px rgba(124, 58, 237, 0.05); }
+.portal-box h2 { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin-bottom: 12px; }
+.portal-box p { color: var(--text-muted); max-width: 700px; margin: 0 auto 24px; font-size: .95rem; line-height: 1.6; }
+.portal-link-btn { display: inline-flex; align-items: center; gap: 12px; background: #fff; color: #000; padding: 16px 32px; border-radius: 8px; font-family: 'Orbitron', sans-serif; font-size: .85rem; font-weight: 900; text-decoration: none; transition: all 0.3s; }
+.portal-link-btn:hover { background: var(--gold); color: #000; transform: translateY(-2px); box-shadow: 0 0 20px var(--gold-glow); }
 
-.path-header { display: flex; justify-content: space-between; align-items: center; }
-.path-icon { font-size: 2rem; filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); }
-.path-tag {
-  font-family: 'Orbitron', sans-serif; font-size: .65rem; font-weight: 700;
-  padding: 4px 12px; border-radius: 3px; letter-spacing: 1.5px;
-}
-.path-card.buy .path-tag { background: rgba(16, 185, 129, 0.15); color: var(--green-neon); border: 1px solid rgba(16, 185, 129, 0.3); }
-.path-card.biz .path-tag { background: rgba(139, 92, 246, 0.15); color: var(--p); border: 1px solid rgba(139, 92, 246, 0.3); }
+/* SECCIÓN: TUTORIAL PASO A PASO */
+.tutorial-section { background: #06020f; border-top: 1px solid rgba(124, 58, 237, 0.1); border-bottom: 1px solid rgba(124, 58, 237, 0.1); padding: 100px 48px; }
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-header .sub { font-family: 'Orbitron', sans-serif; font-size: .75rem; color: var(--omni-purple); letter-spacing: 3px; font-weight: 700; margin-bottom: 12px; }
+.section-header h2 { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: #fff; }
 
-.path-title { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 700; color: #fff; }
-.path-desc { font-size: .9rem; color: var(--text-muted); line-height: 1.6; }
-.path-hl {
-  font-size: .85rem; font-weight: 600; padding: 12px; border-radius: 6px;
-  background: rgba(255,255,255,0.03); border-left: 3px solid transparent;
-}
-.path-card.buy .path-hl { border-left-color: var(--green-neon); color: #fff; }
-.path-card.biz .path-hl { border-left-color: var(--gold); color: #fff; }
+.grid-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1100px; margin: 0 auto; }
+.step-card { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 12px; padding: 32px; }
+.step-number { width: 40px; height: 40px; border-radius: 6px; background: rgba(124, 58, 237, 0.15); border: 1px solid var(--omni-purple); color: var(--text-main); font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+.step-card h4 { font-family: 'Orbitron', sans-serif; font-size: 1.05rem; color: #fff; margin-bottom: 12px; }
+.step-card p { font-size: .85rem; color: var(--text-muted); line-height: 1.6; }
+.step-ui-box { margin-top: 20px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 6px; font-family: monospace; font-size: .75rem; color: var(--green-neon); }
 
-.path-cta { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; font-family: 'Orbitron', sans-serif; font-size: .8rem; font-weight: 700; letter-spacing: 1px;}
-.path-card.buy .path-cta { color: var(--green-neon); }
-.path-card.biz .path-cta { color: var(--p); }
+/* SECCIÓN FORMULARIO */
+.form-section { padding: 100px 48px; max-width: 700px; margin: 0 auto; }
+.toggle-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+.toggle-btn { padding: 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); color: var(--text-muted); font-family: 'Orbitron', sans-serif; font-size: .8rem; font-weight: 700; cursor: pointer; transition: all .3s; text-align: center; }
+.toggle-btn.active { border-color: var(--omni-purple); background: rgba(124, 58, 237, 0.15); color: #fff; box-shadow: 0 0 20px var(--purple-glow); }
 
-/* SECCIÓN MATRIZ DE BENEFICIOS */
-.benefits-wrap { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
-.col-label { font-family: 'Orbitron', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: 3px; margin-bottom: 16px; text-transform: uppercase; }
-.col-label.green { color: var(--green-neon); }
-.col-label.gold { color: var(--gold); }
-.col-title { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 32px; }
-
-.blist { display: flex; flex-direction: column; gap: 20px; }
-.bitem {
-  display: flex; gap: 20px; background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 24px;
-  transition: all .3s;
-}
-.bitem:hover { background: rgba(139, 92, 246, 0.05); border-color: rgba(139, 92, 246, 0.3); transform: translateX(5px); }
-.bitem-icon { font-size: 1.6rem; }
-.bitem-title { font-family: 'Orbitron', sans-serif; font-size: .95rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
-.bitem-desc { font-size: .85rem; color: var(--text-muted); line-height: 1.6; }
-
-/* FLUJO DE OPERACIONES (PASOS) */
-.how-section { background: #0c0620; border-top: 1px solid rgba(139, 92, 246, 0.15); border-bottom: 1px solid rgba(139, 92, 246, 0.15); padding: 100px 48px; }
-.how-inner { max-width: 1100px; margin: 0 auto; }
-.sec-center { text-align: center; margin-bottom: 60px; }
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.step {
-  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 8px; padding: 32px 24px; text-align: center; position: relative;
-}
-.step-num {
-  width: 45px; height: 45px; border-radius: 50%; background: #070214;
-  border: 2px solid var(--p); color: #fff; font-family: 'Orbitron', sans-serif;
-  font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 20px; box-shadow: 0 0 15px var(--p-glow);
-}
-.step-title { font-family: 'Orbitron', sans-serif; font-size: .9rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
-.step-text { font-size: .8rem; color: var(--text-muted); line-height: 1.6; }
-
-/* TESTIMONIOS (CÁPSULAS HOLOGRÁFICAS) */
-.test-section { padding: 100px 48px; }
-.test-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
-.test-card {
-  background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 20px;
-}
-.stars { color: var(--gold); letter-spacing: 3px; font-size: .8rem; }
-.test-text { font-size: .95rem; line-height: 1.7; color: var(--text-main); font-style: italic; }
-.author-avatar {
-  width: 45px; height: 45px; border-radius: 6px; background: rgba(139, 92, 246, 0.2);
-  border: 1px solid var(--p); color: #fff; font-family: 'Orbitron', sans-serif;
-  display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: .9rem;
-}
-
-/* PERFIL DE MARCA PERSONAL LÁSER */
-.profile-section { padding: 100px 48px; background: rgba(10, 5, 25, 0.5); }
-.profile-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: 64px; align-items: center; }
-.profile-photo-wrap {
-  width: 240px; height: 240px; border-radius: 20px;
-  background: linear-gradient(135deg, var(--p), var(--gold)); padding: 2px;
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
-}
-.profile-frame {
-  width: 100%; height: 100%; border-radius: 18px; background: #070214;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: #fff; font-weight: 900;
-}
-.profile-name { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; color: #fff; }
-.profile-role { font-family: 'Orbitron', sans-serif; font-size: .85rem; color: var(--p); letter-spacing: 2px; font-weight: 700; margin: 8px 0 24px; text-transform: uppercase;}
-.profile-bio { color: var(--text-muted); line-height: 1.8; font-size: 1rem; }
-
-/* TERMINAL DE CONVERSIÓN (FORMULARIO) */
-.cta-section { padding: 100px 48px; }
-.cta-inner { max-width: 650px; margin: 0 auto; }
-.intent-sel { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 32px; }
-.intent-btn {
-  padding: 16px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.02); cursor: pointer; font-family: 'Orbitron', sans-serif;
-  font-size: .8rem; font-weight: 700; color: var(--text-muted); transition: all .3s;
-  letter-spacing: 1px;
-}
-.intent-btn.active {
-  border-color: var(--p); background: rgba(139, 92, 246, 0.15); color: #fff;
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.25);
-}
-.form-box {
-  background: var(--card-bg); backdrop-filter: blur(16px);
-  border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 16px; padding: 40px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-}
+.main-form-box { background: var(--card-bg); border: 1px solid rgba(124, 58, 237, 0.2); border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
 .form-group { margin-bottom: 24px; }
-.form-label { font-family: 'Orbitron', sans-serif; font-size: .75rem; font-weight: 700; color: #fff; letter-spacing: 1px; display: block; margin-bottom: 8px; }
-.form-input {
-  width: 100%; padding: 14px 18px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1);
-  background: rgba(7, 2, 20, 0.8); color: #fff; font-family: 'Outfit', sans-serif; font-size: .95rem;
-  outline: none; transition: all .3s;
-}
-.form-input:focus { border-color: var(--p); box-shadow: 0 0 12px var(--p-glow); }
+.form-label { font-family: 'Orbitron', sans-serif; font-size: .75rem; font-weight: 700; color: #fff; display: block; margin-bottom: 8px; letter-spacing: 1px; }
+.form-input { width: 100%; padding: 14px 18px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: #0c061a; color: #fff; font-family: 'Outfit', sans-serif; font-size: .95rem; outline: none; transition: all .3s; }
+.form-input:focus { border-color: var(--omni-purple); box-shadow: 0 0 12px var(--purple-glow); }
 
-.submit-btn {
-  width: 100%; background: linear-gradient(90deg, var(--p), #6D28D9); color: #fff;
-  padding: 18px; border: none; border-radius: 6px; font-family: 'Orbitron', sans-serif;
-  font-size: .9rem; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all .3s;
-}
-.submit-btn:hover { transform: translateY(-2px); box-shadow: 0 0 25px var(--p-glow); }
+.action-btn { width: 100%; background: linear-gradient(90deg, var(--omni-purple), #6D28D9); color: #fff; padding: 18px; border: none; border-radius: 6px; font-family: 'Orbitron', sans-serif; font-size: .9rem; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all .3s; }
+.action-btn:hover { transform: translateY(-2px); box-shadow: 0 0 25px var(--purple-glow); }
 
-footer { background: #05020c; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 40px; font-size: .8rem; color: var(--text-muted); line-height: 1.8; }
+.security-note { text-align: center; margin-top: 20px; font-size: .8rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 8px; }
+.security-note span { color: var(--green-neon); }
+
+footer { background: #04010a; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 40px; font-size: .8rem; color: var(--text-muted); line-height: 1.8; }
 footer strong { color: #fff; }
 
-@media(max-width:860px){
+@media(max-width:960px){
   nav { padding: 15px 24px; }
-  .nav-right { display: none; }
-  .hero { padding: 120px 24px 60px; }
-  .paths, .two-col, .steps, .test-grid, .profile-inner, .intent-sel { grid-template-columns: 1fr; }
-  .steps { gap: 16px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 120px 24px 40px; text-align: center; gap: 40px; }
+  .hero-tag { justify-content: center; }
+  .grid-steps { grid-template-columns: 1fr; }
+  .form-section, .omni-portal-section { padding: 40px 24px; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- NAVEGACIÓN -->
 <nav>
-  <div class="logo">MIRIAN <em>RAMÍREZ</em><span>// SYSTEM</span></div>
-  <div class="nav-right">
-    <a href="#productos" class="nav-pill outline">BIO-PRODUCTOS</a>
-    <a href="#negocio" class="nav-pill filled">BUSINESS HUB</a>
+  <div class="logo">MIRIAN <em>RAMÍREZ</em><span>DISTRIBUIDOR INDEPENDIENTE</span></div>
+  <div class="nav-links">
+    <a href="#tutorial" class="nav-btn secondary">¿CÓMO AFILIARSE?</a>
+    <a href="#registro" class="nav-btn primary">REGISTRO GUIADO</a>
   </div>
 </nav>
 
-<!-- HERO GLOBAL -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow"><span class="hero-dot"></span>GLOBAL NETWORK // READY TO CONNECT</div>
-  <h1>Sistemas de Salud <span class="ul-gold">Premium</span><br>&amp; Modelos de Negocio <span class="accent">Escalables</span></h1>
-  <p class="hero-sub">Optimiza tu rendimiento biológico con suplementación científica o activa una franquicia digital independiente con distribución en más de 20 países.</p>
+  <div>
+    <div class="hero-tag"><span></span>EMPRESARIA INDEPENDIENTE OMNILIFE</div>
+    <h1>Tu Código Oficial con <span class="gradient">Descuento del 25% Directo</span> o <span class="gold">Plan de Distribución</span></h1>
+    <p class="hero-p">Adquiere de forma directa e independiente la gama completa de suplementación nutricional balanceada y tecnología micelizada. Regístrate para consumo inteligente obteniendo un 25% de descuento directo al afiliarte o inicia tu propia ruta de distribución internacional con mi asesoramiento constante.</p>
+    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+      <a href="#tutorial" class="nav-btn primary" style="padding: 16px 28px; font-size: .85rem;">VER PROCESO DE ALTA</a>
+      <a href="#registro" class="nav-btn secondary" style="padding: 16px 28px; font-size: .85rem;">SOLICITAR ASISTENCIA 1 A 1</a>
+    </div>
+  </div>
   
-  <div class="paths">
-    <a href="#formulario" class="path-card buy" onclick="selectIntent('consumidor')">
-      <div class="path-header">
-        <div class="path-icon">🧬</div>
-        <div class="path-tag">CONSUMIDOR INTELEGENTE</div>
-      </div>
-      <div class="path-title">Acceso con -25% Directo</div>
-      <p class="path-desc">Consumo inteligente y libre de suplementación cuántica y celular. Sin compras forzadas ni intermediarios.</p>
-      <div class="path-hl">Matriz inteligente: Descuento escalable hasta el 40%</div>
-      <div class="path-cta"><span>DESBLOQUEAR DESCUENTO</span><span>→</span></div>
+  <!-- Tarjeta de Confianza -->
+  <div class="mirian-card">
+    <div class="avatar-frame">
+      <div class="avatar-internal">MR</div>
+    </div>
+    <h3>Mirian Ramírez</h3>
+    <div class="badge">Distribuidor Independiente</div>
+    <p>Con más de 30 años de experiencia, te acompaño para asegurar que tu proceso de inscripción en Omnilife sea claro, transparente y con soporte directo desde el primer día. Tu registro se realiza bajo los lineamientos corporativos oficiales.</p>
+  </div>
+</section>
+
+<!-- SECCIÓN: ENLACE WEB OFICIAL PROPORCIONADO POR OMNILIFE -->
+<section class="omni-portal-section">
+  <div class="portal-box">
+    <h2>🌐 Portal Web de Inscripción Directa</h2>
+    <p>Si prefieres automatizar tu proceso, puedes ingresar directamente a mi sitio web institucional en la plataforma oficial provista por Omnilife. Elige tu país y completa el formulario para darte de alta inmediatamente con tu 25% de descuento inicial.</p>
+    
+    <!-- COLOCA AQUÍ TU LINK OFICIAL -->
+    <a href="https://MI-SITIO-WEB-DE-OMNILIFE.com" target="_blank" class="portal-link-btn">
+      INGRESAR A MI WEB OFICIAL OMNILIFE ↗
     </a>
-    
-    <a href="#formulario" class="path-card biz" onclick="selectIntent('negocio')">
-      <div class="path-header">
-        <div class="path-icon">⚡</div>
-        <div class="path-tag">DISTRIBUIDOR GLOBAL</div>
-      </div>
-      <div class="path-title">Ecosistema Financiero</div>
-      <p class="path-desc">Despliega un canal de distribución internacional desde tu smartphone. Monetiza la industria del bienestar.</p>
-      <div class="path-hl">Incentivos: Bonos de aceleración + Viajes anuales</div>
-      <div class="path-cta"><span>INICIAR SISTEMA</span><span>→</span></div>
-    </a>
   </div>
 </section>
 
-<!-- BENEFICIOS -->
-<div class="benefits-wrap">
-  <div class="two-col">
-    <div id="productos">
-      <div class="col-label green">// PROTOCOLO BIOLÓGICO</div>
-      <h2 class="col-title">Bio-Suplementación Avanzada</h2>
-      <div class="blist">
-        <div class="bitem">
-          <div class="bitem-icon">🔮</div>
-          <div>
-            <div class="bitem-title">Tecnología de Absorción Celular</div>
-            <div class="bitem-desc">Nutrientes diseñados para una biodisponibilidad del 99% a nivel celular de forma inmediata.</div>
-          </div>
-        </div>
-        <div class="bitem">
-          <div class="bitem-icon">⚙️</div>
-          <div>
-            <div class="bitem-title">Cero Obligaciones de Stock</div>
-            <div class="bitem-desc">Tú controlas el flujo. Adquiere lo que necesites, cuando tu cuerpo lo requiera.</div>
-          </div>
-        </div>
-      </div>
+<!-- SECCIÓN: EL TUTORIAL DE AFILIACIÓN -->
+<section id="tutorial" class="tutorial-section">
+  <div class="section-header">
+    <div class="sub">// VERIFICACIÓN DE PASOS</div>
+    <h2>Estructura del Formulario Corporativo</h2>
+  </div>
+  
+  <div class="grid-steps">
+    <!-- Paso 1 -->
+    <div class="step-card">
+      <div class="step-number">01</div>
+      <h4>Elegir tipo de Cuenta</h4>
+      <p>Al acceder al servidor de Omnilife, selecciona si deseas registrarte como <strong>Cliente Admirable</strong> (compras de consumo con descuento del 25%) o como <strong>Distribuidor Independiente</strong> (para comercializar la gama).</p>
+      <div class="step-ui-box">Opción: [ Cliente / Distribuidor ]</div>
     </div>
     
-    <div id="negocio">
-      <div class="col-label gold">// INFRAESTRUCTURA DIGITAL</div>
-      <h2 class="col-title">Escalabilidad Cuántica</h2>
-      <div class="blist">
-        <div class="bitem">
-          <div class="bitem-icon">🎯</div>
-          <div>
-            <div class="bitem-title">Mentoría y Roadmap 1 a 1</div>
-            <div class="bitem-desc">Acceso directo a mis estrategias de adquisición digital, automatización y duplicación de equipos.</div>
-          </div>
-        </div>
-        <div class="bitem">
-          <div class="bitem-icon">💎</div>
-          <div>
-            <div class="bitem-title">Regalías de por vida</div>
-            <div class="bitem-desc">Construye una red activa y genera ingresos residuales recurrentes por consumos globales.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PROCESO LINEAL -->
-<section class="how-section">
-  <div class="how-inner">
-    <div class="sec-center">
-      <div class="col-label gold">// PIPELINE</div>
-      <h2 class="sec-title white">Protocolo de Onboarding</h2>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div class="step-title">Elegir Nodo</div>
-        <p class="step-text">Define tu objetivo: Optimización física o negocio escalable.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <div class="step-title">Data Entry</div>
-        <p class="step-text">Registra tu geolocalización para validar la disponibilidad logística.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <div class="step-title">Conexión Segura</div>
-        <p class="step-text">Sesión estratégica privada vía WhatsApp para abrir tu código oficial.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <div class="step-title">Despliegue</div>
-        <p class="step-text">Acceso a precios de fábrica o plataforma de entrenamiento digital.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIOS -->
-<section class="test-section">
-  <div class="test-inner">
-    <div class="col-label gold" style="text-align: center;">// CASOS DE ÉXITO REGISTRADOS</div>
-    <div class="test-grid">
-      <div class="test-card">
-        <div class="stars">★★★★★</div>
-        <p class="test-text">"La afiliación me permitió automatizar mi salud. Compro directo con descuento, sin intermediarios y con envíos rápidos."</p>
-        <div style="display: flex; gap: 15px; align-items: center;">
-          <div class="author-avatar">MD</div>
-          <div>
-            <div style="font-weight: 700; font-size: .9rem;">Elena Rostova</div>
-            <div style="font-size: .75rem; color: var(--text-muted);">Valencia, España</div>
-          </div>
-        </div>
-      </div>
-      <div class="test-card">
-        <div class="stars">★★★★★</div>
-        <p class="test-text">"Pasé de empleada tradicional a dirigir una red internacional. El sistema de Mirian elimina toda la curva de aprendizaje."</p>
-        <div style="display: flex; gap: 15px; align-items: center;">
-          <div class="author-avatar">AM</div>
-          <div>
-            <div style="font-weight: 700; font-size: .9rem;">Alan Medina</div>
-            <div style="font-size: .75rem; color: var(--text-muted);">Bogotà, Colombia</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PERFIL -->
-<section class="profile-section">
-  <div class="profile-inner">
-    <div class="profile-photo-wrap">
-      <div class="profile-frame">MR</div>
-    </div>
-    <div>
-      <div class="profile-eyebrow">// LEAD ARCHITECT</div>
-      <h2 class="profile-name">Mirian Ramírez</h2>
-      <div class="profile-role">Especialista en Bio-Hacking &amp; Expansión de Redes Globales</div>
-      <p class="profile-bio">Con más de tres décadas analizando mercados de bienestar, mi función es reestructurar tu salud física y darte la infraestructura digital llave en mano para que logres la independencia financiera en la nueva economía.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TERMINAL DE REGISTRO -->
-<section id="formulario" class="cta-section">
-  <div class="cta-inner">
-    <div class="intent-sel">
-      <button class="intent-btn active" id="btn-consumidor" onclick="selectIntent('consumidor')">[ 🛒 MODO CONSUMIDOR ]</button>
-      <button class="intent-btn" id="btn-negocio" onclick="selectIntent('negocio')">[ 🚀 MODO PARTNER ]</button>
+    <!-- Paso 2 -->
+    <div class="step-card">
+      <div class="step-number">02</div>
+      <h4>Validar Patrocinador</h4>
+      <p>Para asegurar mi acompañamiento y asesoría constante, confirma que el sistema mantenga activo mi código de Distribuidor Independiente o el nombre de <strong>Mirian Ramírez</strong> en la sección correspondiente.</p>
+      <div class="step-ui-box">Presentador: MIRIAN RAMÍREZ ✓</div>
     </div>
     
-    <div class="form-box">
-      <form action="#" method="POST">
-        <div class="form-group">
-          <label class="form-label">USUARIO / NOMBRE COMPLETO</label>
-          <input type="text" class="form-input" placeholder="Ej. Alex Turner" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">CANAL DE ENLACE / WHATSAPP</label>
-          <input type="tel" class="form-input" placeholder="Ej. +34 600 000 000" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">NODO DE OPERACIÓN / PAÍS</label>
-          <input type="text" class="form-input" placeholder="Ej. México" required>
-        </div>
-        <button type="submit" class="submit-btn">
-          <span id="submit-text">INICIALIZAR DESCUENTO DEL 25%</span>
-        </button>
-      </form>
+    <!-- Paso 3 -->
+    <div class="step-card">
+      <div class="step-number">03</div>
+      <h4>Asignación de ID Oficial</h4>
+      <p>Ingresa tus datos personales y dirección de entrega. Tras procesar tu alta, Omnilife generará tu código de usuario y contraseña oficiales para comprar con descuento de forma inmediata.</p>
+      <div class="step-ui-box">Estado: Código listo para usar</div>
     </div>
   </div>
 </section>
 
+<!-- SECCIÓN: FORMULARIO DE CONFIANZA 1 A 1 -->
+<section id="registro" class="form-section">
+  <div class="section-header">
+    <div class="sub">// ATENCIÓN INDEPENDIENTE</div>
+    <h2>¿Necesitas asesoría en tu registro?</h2>
+    <p style="color: var(--text-muted); margin-top: 10px; font-size: .95rem;">Si tienes dudas sobre los kits o el llenado de datos, ingresa tus datos de contacto para guiarte de forma personalizada mediante WhatsApp.</p>
+  </div>
+  
+  <div class="toggle-container">
+    <button class="toggle-btn active" id="btn-cons" onclick="setMode('consumo')">[ CONSUMO CON 25% DE DESCUENTO ]</button>
+    <button class="toggle-btn" id="btn-dist" onclick="setMode('negocio')">[ DISTRIBUCIÓN INDEPENDIENTE ]</button>
+  </div>
+  
+  <div class="main-form-box">
+    <form action="#" method="POST">
+      <div class="form-group">
+        <label class="form-label">NOMBRE COMPLETO</label>
+        <input type="text" class="form-input" placeholder="Ej. Carlos Mendoza" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">WHATSAPP (INCLUIR CÓDIGO DE PAÍS)</label>
+        <input type="tel" class="form-input" placeholder="Ej. +593 99 123 4567" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">PAÍS DE RESIDENCIA</label>
+        <input type="text" class="form-input" placeholder="Ej. Ecuador" required>
+      </div>
+      
+      <button type="submit" class="action-btn">
+        <span id="btn-text">SOLICITAR GUÍA PARA CONSUMO CON 25% DE DESCUENTO</span>
+      </button>
+    </form>
+    
+    <div class="security-note">
+      <span>🔒</span> Enlace de soporte directo con Mirian Ramírez, Distribuidor Independiente.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CON LEYENDAS LEGALES EXIGIDAS -->
 <footer>
-  <p>&copy; 2026 Mirian Ramírez // DISTRIBUIDOR INDEPENDIENTE.<br>Cifrado y optimizado para distribución global. Esta landing page no representa la interfaz directa corporativa.</p>
+  <p>&copy; 2026 Mirian Ramírez. Todos los derechos reservados.<br>
+  <strong>DISTRIBUIDOR INDEPENDIENTE OMNILIFE</strong><br>
+  Este sitio web es propiedad exclusiva de un Distribuidor Independiente y no constituye la página institucional oficial de Omnilife de México, S.A. de C.V. ni de ninguna de sus filiales.</p>
 </footer>
 
 <script>
-function selectIntent(type) {
-  document.getElementById('btn-consumidor').classList.remove('active');
-  document.getElementById('btn-negocio').classList.remove('active');
-  const submitText = document.getElementById('submit-text');
+function setMode(mode) {
+  document.getElementById('btn-cons').classList.remove('active');
+  document.getElementById('btn-dist').classList.remove('active');
+  const txt = document.getElementById('btn-text');
   
-  if(type === 'consumidor') {
-    document.getElementById('btn-consumidor').classList.add('active');
-    submitText.innerText = "INICIALIZAR DESCUENTO DEL 25%";
+  if(mode === 'consumo') {
+    document.getElementById('btn-cons').classList.add('active');
+    txt.innerText = "SOLICITAR GUÍA PARA CONSUMO CON 25% DE DESCUENTO";
   } else {
-    document.getElementById('btn-negocio').classList.add('active');
-    submitText.innerText = "SINCRONIZAR CON MENTORÍA DE NEGOCIO";
+    document.getElementById('btn-dist').classList.add('active');
+    txt.innerText = "SOLICITAR GUÍA PARA DISTRIBUCIÓN INDEPENDIENTE";
   }
 }
 </script>
